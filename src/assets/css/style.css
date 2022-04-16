@@ -1,0 +1,64 @@
+@import "../../components//Header//assets/Header.style.css";
+@import "./Home.css";
+
+body {
+    font-family: "Eina03-400 san-serif";
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #666;
+    background-color: #FFF;
+}
+
+body {
+    direction: ltr;
+    font-family: "Eina03-400 san-serif";
+    font-size: 14px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: #666;
+    line-height: 1.55;
+}
+
+.row::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+a {
+    color: #222;
+    text-decoration: none;
+}
+
+a:focus, a:hover {
+    color: #eb7025;
+    text-decoration: none;
+}
+
+.container {
+    padding-left: "9px";
+    padding-right: "9px";
+}
+
+.btn-contained {
+    color: #222;
+    border: 2px solid;
+}
+
+.btn-filled {
+    background-color: #222;
+    color: #FFF;
+}
+
+.btn:hover {
+    color: #FFF;
+    background-color: #eb7025;
+    border-color: #eb7025;
+}
+
+@media (max-width: 1199px) {
+    .container {
+        padding-left: "15px";
+        padding-right: "15px";
+    }
+}
