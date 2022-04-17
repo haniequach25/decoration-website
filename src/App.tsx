@@ -3,7 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import logo from './logo.svg';
 import './App.css';
 import './assets/css/style.css';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Home from './features/Home/Home';
 import Header from './components/Header/Header';
 
@@ -11,8 +11,9 @@ function App() {
   return (
     <BrowserRouter>
       <Header />
-      <Routes>
-        <Route path='/' element={<div className="App">
+      <Switch>
+        <Route exact path='/'>
+          <div className="App">
           <header className="App-header">
             <img src={logo} className="App-logo" alt="logo" />
             <p>
@@ -27,10 +28,12 @@ function App() {
               Learn React
             </a>
           </header>
-        </div>}>
+        </div>
         </Route>
-        <Route path='/Home' element={<Home />} />
-      </Routes>
+        <Route path='/Home'>
+        <Home />
+        </Route>
+      </Switch>
     </BrowserRouter>
   );
 }
