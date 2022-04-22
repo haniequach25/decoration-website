@@ -1,0 +1,136 @@
+.logo-container a{
+    font-weight: 500;
+    color: var(--primary-main);
+}
+
+.logo-container a:hover, .logo-container a:focus{
+    color: var(--primary-main);
+}
+
+.logo-container span{
+    color: var(--secondary-main);
+}
+
+.breadcrumb-nav {
+    background-image: url("https://apollotran.com/demo/at_auros/themes/at_auros/assets/img/bg-beagrumb.jpg");
+    height: 220px;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    text-align: right;
+    margin-bottom: 40px;
+}
+
+.breadcrumb-nav li {
+    text-transform: capitalize;
+}
+
+.breadcrumb-wrapper {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.list-content-wrapper {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.sidebar .title-block {
+    font-size: 16px;
+    padding-bottom: 20px;
+    position: relative;
+    margin: 0;
+    text-transform: uppercase;
+}
+
+#left-column {
+    border: 1px solid var(--border-color);
+    margin-bottom: 1.5625rem;
+    background: #FFF;
+    padding: 1.25rem;
+}
+
+.block-categories {
+    border-bottom: 1px solid var(--border-color);
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+.category-top-menu li {
+    padding: 9px  9px 9px 20px;
+    font-size: 1rem;
+}
+
+.price-menu {
+    color: var(--primary-main);
+}
+
+#left-column.sidebar {
+    height: 100%;
+}
+
+#left-column.sidebar .block-categories:first-child {
+    padding-top: 0;
+}
+
+#left-column.sidebar .block-categories:last-child {
+    border-bottom: none;
+}
+
+.page-footer {
+    margin-top: 30px;
+}
+
+.page-footer, .page-footer a {
+    display: flex;
+    align-items: center;
+    color: #878787;
+}
+
+.page-footer svg {
+    font-size: 14px;
+}
+
+.page-footer a:not(:first-child) {
+    margin-left: 10px;
+}
+
+@media (min-width: 450px) {
+    #left-column.sidebar {
+        float: left;
+        width: 100%;
+    }
+
+    #content-wrapper {
+        float: left;
+        width: 100%;
+    }
+}
+
+@media (min-width: 768px) {
+    #left-column.sidebar {
+        float: left;
+        width: 25%;
+    }
+
+    #content-wrapper {
+        float: left;
+        width: 75%;
+        padding-left: 15px;
+    }
+}
+
+@media (min-width: 992px) {
+    #left-column.sidebar {
+        float: left;
+        width: 20%;
+    }
+
+    #content-wrapper {
+        float: left;
+        width: 80%;
+        padding-left: 25px;
+    }
+}

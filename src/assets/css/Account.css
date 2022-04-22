@@ -1,0 +1,115 @@
+.page-header h1{
+    margin-bottom: 25px;
+    text-align: center;
+    font-size: 30px;
+}
+
+.account-container {
+    margin-bottom: 30px;
+}
+
+.account-content a {
+    width: 100%;
+    text-align: center;
+    display: inline-block;
+    font-size: 13px;
+    text-transform: uppercase;
+    color: #878787;
+    padding: 0 10px;
+    margin: 15px 0;
+}
+
+.account-content a:hover, .account-content a:focus{
+    color: #878787;
+}
+
+.account-logout {
+    text-align: center;
+}
+
+.account-logout {
+    margin-top: 25px;
+}
+
+.account-logout a {
+    color: #878787;
+}
+
+.account-content a span.link-item {
+    display: block;
+    height: 100%;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    -o-box-shadow: none;
+    -ms-box-shadow: none;
+    box-shadow: none;
+    background: #fff;
+    padding: 16px;
+    border: 0;
+    box-shadow: 0 2px 7px rgb(0 0 0 / 20%);
+}
+
+.account-content a svg {
+    display: block;
+    font-size: 2.6rem;
+    width: 100%;
+    color: #414141;
+    margin-bottom: 10px;
+}
+
+.information-form .form-horizontal {
+    border: none;
+    box-shadow: none;
+}
+
+.table-bordered {
+    border: 1px solid var(--border-color);
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 1rem;
+}
+
+.table-bordered > div {
+    display: grid;
+    width: 100%;
+    grid-template-columns: repeat(7, 1fr);
+    justify-content: space-between;
+    border-bottom: none;
+    justify-self: left;
+}
+
+.table-bordered > div:first-child {
+    font-weight: bold;
+}
+
+.table-bordered > div div{
+    padding: 12px;
+    border: 1px solid var(--border-color);
+}
+
+.ReactCollapse--collapse {
+    transition: height 500ms;
+}
+
+.ReactCollapse--collapse .table img {
+    width: 60px;
+    border: 1px solid var(--border-color);
+}
+
+@media (min-width: 450px) {
+    .account-content {
+        display: grid;
+        width: 100%;
+        grid-template-columns: repeat(1, 1fr);
+        justify-content: space-between;
+    }
+}
+
+@media (min-width: 765px) {
+    .account-content {
+        display: grid;
+        width: 100%;
+        grid-template-columns: repeat(2, 1fr);
+        justify-content: space-between;
+    }
+}

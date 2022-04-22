@@ -1,5 +1,6 @@
 import React from 'react';
-import ProductCard from '../../../../components/ProductCard/ProductCard';
+import { Swiper, SwiperSlide } from "swiper/react";
+import ProductCard from '../ProductCard/ProductCard';
 
 interface Properties {
     title?: string,
@@ -8,37 +9,43 @@ interface Properties {
 }
 
 interface Product {
+    id: number,
     name: string,
     price: number,
     imageSrc: string,
 }
 
-const arrayList = [
+const arrayList: Product[] = [
     {
+        id: 1,
         name: "Chair",
         price: 11.5,
         imageSrc: "https://apollotran.b-cdn.net/demo/at_auros/24-home_default/hummingbird-printed-t-shirt.jpg",
     },
 
     {
+        id: 2,
         name: "Table",
         price: 14.5,
         imageSrc: "https://apollotran.b-cdn.net/demo/at_auros/24-home_default/hummingbird-printed-t-shirt.jpg",
     },
 
     {
+        id: 3,
         name: "Folk",
         price: 15.5,
         imageSrc: "https://apollotran.b-cdn.net/demo/at_auros/24-home_default/hummingbird-printed-t-shirt.jpg",
     },
 
     {
+        id: 4,
         name: "Spoon",
         price: 17.5,
         imageSrc: "https://apollotran.b-cdn.net/demo/at_auros/24-home_default/hummingbird-printed-t-shirt.jpg",
     },
 
     {
+        id: 5,
         name: "Knife",
         price: 20.5,
         imageSrc: "https://apollotran.b-cdn.net/demo/at_auros/24-home_default/hummingbird-printed-t-shirt.jpg",
@@ -48,13 +55,6 @@ const arrayList = [
 ]
 
 const ProductSlider: React.FC<Properties> = (props) => {
-    const settings = {
-        dots: true,
-        infinite: true,
-        speed: 500,
-        slidesToShow: 1,
-        slidesToScroll: 1
-    };
 
     return (
         <div>
@@ -67,17 +67,24 @@ const ProductSlider: React.FC<Properties> = (props) => {
                     <div className="sub-title-block">
                         {props.subTitle || "Unknown"}
                     </div>
-
-                    <div className="block-content">
-                        <div className="owl-carousel">
-                            <div className="owl-wrapper-outer">
-
-                            </div>
-                        </div>
-                    </div>
                 </div>
+
+                <Swiper
+                    slidesPerView={4}
+                    spaceBetween={30}
+                    freeMode={true}
+                    loop={true}
+                >
+                    {arrayList?.map((item) => {
+                        return (
+                            <SwiperSlide key={item.id}>
+                                <ProductCard key={item.id} />
+                            </SwiperSlide>
+                        );
+                    })}
+                </Swiper>
             </div>
-        </div>
+        </div >
     );
 }
 

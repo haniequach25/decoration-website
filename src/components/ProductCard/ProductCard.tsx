@@ -11,7 +11,7 @@ const ProductCard: React.FC<Properties> = (props) => {
     return (
         <div className='thumbnail-container'>
             <div className="product-image">
-                <Link to="/">
+                <Link to={`/product/${"slug"}`}>
                     <img
                         src={props.imageSrc || "https://apollotran.b-cdn.net/demo/at_auros/24-home_default/hummingbird-printed-t-shirt.jpg"}
                         alt="product"
@@ -22,7 +22,7 @@ const ProductCard: React.FC<Properties> = (props) => {
 
             <div className="product-meta">
                 <h4 className="product-title">
-                    <Link to="/">
+                    <Link to={`/product/${"slug"}`}>
                         {props.name || "Product name"}
                     </Link>
                 </h4>

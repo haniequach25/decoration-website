@@ -1,22 +1,47 @@
-@import "../../components//Header//assets/Header.style.css";
+@import "./constant.css";
+@import "./Header.css";
 @import "./Home.css";
+@import "./Footer.css";
+@import "./components.css";
+@import "./Product.css";
+@import "./Blog.css";
+@import "./Account.css";
 
 body {
-    font-family: "Eina03-400 san-serif";
+    font-family: "Roboto","Helvetica","Arial",sans-serif;;
     font-size: 1rem;
     line-height: 1.5;
-    color: #666;
-    background-color: #FFF;
+    color: var(--primary-main);
+    background-color: var(--secondary-contrastText);
 }
 
 body {
     direction: ltr;
-    font-family: "Eina03-400 san-serif";
+    font-family: "Roboto","Helvetica","Arial",sans-serif;;
     font-size: 14px;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    color: #666;
+    color: var(--primary-main);
     line-height: 1.55;
+}
+
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    line-height: 1.1;
+    color: var(--primary-dark);
+}
+
+a {
+    -webkit-transition: all 0.4s;
+    -o-transition: all 0.4s;
+    transition: all 0.4s;
+}
+
+.clearfix::after {
+    content: "";
+    display: table;
+    clear: both;
 }
 
 .row::after {
@@ -26,12 +51,12 @@ body {
 }
 
 a {
-    color: #222;
+    color: var(--primary-dark);
     text-decoration: none;
 }
 
 a:focus, a:hover {
-    color: #eb7025;
+    color: var(--secondary-main);
     text-decoration: none;
 }
 
@@ -41,19 +66,19 @@ a:focus, a:hover {
 }
 
 .btn-contained {
-    color: #222;
+    color: var(--primary-dark);
     border: 2px solid;
 }
 
 .btn-filled {
-    background-color: #222;
-    color: #FFF;
+    background-color: var(--primary-dark);
+    color: var(--secondary-contrastText);
 }
 
 .btn:hover {
-    color: #FFF;
-    background-color: #eb7025;
-    border-color: #eb7025;
+    color: var(--secondary-contrastText);
+    background-color: var(--secondary-main);
+    border-color: var(--secondary-main);
 }
 
 @media (max-width: 1199px) {

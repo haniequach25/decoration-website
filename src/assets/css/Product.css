@@ -1,0 +1,164 @@
+.list-product-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    justify-content: space-between;
+    grid-gap: 25px;
+}
+
+.list-product-container::after {
+    content: "";
+    flex: content;
+}
+
+#list-product-sort {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.css-88nv5c-MuiInputBase-root-MuiInput-root-MuiSelect-root:after {
+    border-bottom: none;
+}
+
+.sort-by {
+    white-space: normal;
+    word-break: break-word;
+    text-align: right;
+}
+
+.content-wrapper {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.product-image-container {
+    width: 100%;
+    padding-top: 112%;
+    background-size: cover;
+    margin-bottom: 20px;
+}
+
+.img-slide-item {
+    width: 100%;
+    padding-top: 112%;
+    background-size: cover;
+}
+
+.img-slide-item:hover {
+    outline: 2px solid #2fb5d2;
+}
+
+.product-quantities .label {
+    border: 2px solid #47ae74;
+    color: #47ae74;
+    font-weight: 600;
+    padding: 2px 10px;
+    border-radius: 3px;
+    margin-right: 20px;
+}
+
+.product-detail-name {
+    margin: 20px 0 15px;
+    font-size: 24px;
+    line-height: 1.5;
+    font-weight: 700;
+    letter-spacing: 0;
+    text-transform: uppercase;
+}
+
+.current-price {
+    font-size: 26px;
+    color: #000;
+    margin: 25px 0;
+    letter-spacing: 1px;
+}
+
+.input-quantity{
+    margin-left: 15px;
+    color: #333;
+    background-color: #fff;
+    height: 50px;
+    padding: 5px 15px;
+    width: 70px;
+    text-align: center;
+    border: 1px solid var(--border-color);
+}
+
+.input-quantity:active{
+    border: 1px solid var(--primary-dark);
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+input[type=number] {
+    -moz-appearance: textfield; /* Firefox */
+}
+
+.product-quantity {
+    display: flex;
+    width: 100%;
+    margin: 30px 0;
+    flex-direction: column;
+}
+
+.add-to-cart {
+    background-color: var(--primary-dark);
+    color: var(--secondary-contrastText);
+    padding: 0 40px;
+    line-height: 48px;
+}
+
+.product-action .add-to-cart {
+    margin-top: 25px;
+    height: 50px;
+    line-height: 50px;
+    padding: 0 40px;
+    border-radius: 0;
+    font-size: 12px;
+}
+
+@media (min-width: 450px) {
+    .list-product-container {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        justify-content: space-between;
+    }
+
+    .col-50-percents {
+        width: 100%;
+        float: left;
+    }
+}
+
+@media (min-width: 765px) {
+    .list-product-container {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        justify-content: space-between;
+        grid-gap: 50px;
+    }
+
+    .col-50-percents {
+        width: 50%;
+        float: left;
+    }
+
+    .col-50-percents > .product-information {
+        padding-left: 30px;
+    }
+}
+
+@media (min-width: 1080px) {
+    .list-product-container {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        justify-content: space-between;
+        grid-gap: 50px;
+    }
+}

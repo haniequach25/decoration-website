@@ -53,7 +53,7 @@ ul, ol {
     -o-transition: all 0.4s;
     transition: all 0.4s;
     position: relative;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-family: "Roboto","Helvetica","Arial",sans-serif;;
     -moz-box-shadow: 0 0 0 0 rgba(235,112,37,.3) inset;
     -webkit-box-shadow: 0 0 0 0 rgb(235 112 37 / 30%) inset;
     -o-box-shadow: 0 0 0 0 rgba(235,112,37,.3) inset;
@@ -113,7 +113,7 @@ ul, ol {
     box-shadow: 0 5px 10px rgb(0 0 0 / 10%);
 }
 
-.header-navbar .dropdown-menu {
+.header-navbar .dropdown-menu, .person-block .dropdown-menu {
     left: 0;
     right: auto;
     top: 200%;
@@ -127,6 +127,13 @@ ul, ol {
     transition: all 0.2s;
     border-radius: 0;
     display: block;
+}
+
+.person-block .dropdown-menu {
+    top: 100%;
+    right: 0;
+    left: auto;
+    min-width: 125px;
 }
 
 .dropdown-menu li {

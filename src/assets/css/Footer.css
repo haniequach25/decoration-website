@@ -1,0 +1,36 @@
+#footer {
+    padding-top: 90px;
+    border-top: 1px solid var(--border-color);
+    padding-bottom: 90px;
+}
+
+.footer-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.footer-logo {
+    text-align: left;
+}
+
+.nqt_address p {
+    letter-spacing: .14px;
+    color: var(--primary-dark);
+    margin-bottom: 20px;
+    line-height: 25px;
+}
+
+.nqt-phonenumber {
+    margin-bottom: 10px;
+    letter-spacing: .14px;
+    color: var(--primary-dark);
+}
+
+.nqt-email {
+    letter-spacing: .14px;
+    color: var(--primary-dark);
+    padding-bottom: 1px;
+    border-bottom: 2px solid #f9d4bd;
+    display: inline-block;
+}
