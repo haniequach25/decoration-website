@@ -13,8 +13,13 @@ import Blog from './features/Blog/Blog';
 import ToTop from './ToTop';
 import ScrollToTop from 'react-scroll-to-top';
 import Account from './features/Account/Account';
+import CheckOut from './features/CheckOut/CheckOut';
+import { useSelector } from 'react-redux';
 
 function App() {
+
+  const token: any = useSelector((state: any) => state.user.token);
+
   return (
     <BrowserRouter>
       <Header />
@@ -55,6 +60,10 @@ function App() {
         <Route path="/account">
           <Account />
         </Route>
+
+        {token ? (<Route path="/checkout">
+          <CheckOut />
+        </Route>) : ""}
         <Redirect to={"/"} />
       </Switch>
       <Footer />

@@ -1,12 +1,12 @@
 import { Checkbox, FormControl, FormControlLabel, FormGroup, InputLabel, MenuItem, Pagination, Radio, RadioGroup, Select } from '@mui/material';
 import React, { useEffect, useState } from 'react';
-import { Link, useHistory, useLocation } from 'react-router-dom';
+import { Link, useHistory, useLocation, useParams } from 'react-router-dom';
 import { getAllCatProduct, getAllProduct } from '../../../../api/productApi';
 import BreadCrumb from '../../../../components/BreadCrumb/BreadCrumb';
 import ProductCard from '../../../../components/ProductCard/ProductCard';
 import qs from "qs"; // qs là cái gì đấy query string vl thư hiện query-string thì phải import la import qs from "query-string"
 
-const ProductList: React.FC = (props) => {
+const ProductListByCate: React.FC = (props) => {
 
     const location = useLocation();
 
@@ -20,37 +20,25 @@ const ProductList: React.FC = (props) => {
 
     const [totalItems, setTotalItems] = useState(0);
 
+    const params: any = useParams();
+
+    console.log(params);
 
     const [filter, setFilter]: any = useState({
+        DanhMucSP: params.id,
         pageNo: 1,
         pageSize: 3,
         sort: "_id",
         ...qs.parse(location.search.substring(1)),
     })
 
-    console.log("location search", qs.parse(location.search.substring(1)));
-
-    console.log("filter", qs.stringify({
-        ...filter,
-    }))
-
-    console.log("stringify", qs.stringify({
-        ...filter,
-        filter: {
-            DonGia: {
-                $gte: 0,
-                $lte: 10,
-            },
-        },
-    }));
-
-
     useEffect(() => {
         history.push({
-            pathname: '/product',
+            pathname: `/product/category/${params.id}`,
             search: qs.stringify({
                 ...filter,
                 ...qs.parse(location.search.substring(1)),
+                DanhMucSP: params.id,
             }),
         });
     }, [location.search.substring(1)]);
@@ -75,7 +63,8 @@ const ProductList: React.FC = (props) => {
             try {
                 const response: any = await getAllProduct({
                     ...filter,
-                    ...qs.parse(location.search.substring(1))
+                    ...qs.parse(location.search.substring(1)),
+                    DanhMucSP: params.id,
                 });
 
                 console.log("fetch", {
@@ -100,7 +89,7 @@ const ProductList: React.FC = (props) => {
             } catch (error) { }
         };
         fetchNewsList();
-    }, [filter, location.search.substring(1)]);
+    }, [filter, params, location.search.substring(1)]);
 
     const handlePageChange = (event: any, value: any) => {
         event.preventDefault();
@@ -109,7 +98,7 @@ const ProductList: React.FC = (props) => {
             pageNo: value,
         });
         history.push({
-            pathname: '/product',
+            pathname: `/product/category/${params.id}`,
             search: qs.stringify({
                 ...filter,
                 ...qs.parse(location.search.substring(1)),
@@ -124,7 +113,7 @@ const ProductList: React.FC = (props) => {
             sort: value,
         });
         history.push({
-            pathname: '/product',
+            pathname: `/product/category/${params.id}`,
             search: qs.stringify({
                 ...filter,
                 ...qs.parse(location.search.substring(1)),
@@ -145,7 +134,7 @@ const ProductList: React.FC = (props) => {
                 },
             });
             history.push({
-                pathname: '/product',
+                pathname: `/product/category/${params.id}`,
                 search: qs.stringify({
                     ...filter,
                     ...qs.parse(location.search.substring(1)),
@@ -169,7 +158,7 @@ const ProductList: React.FC = (props) => {
                 },
             });
             history.push({
-                pathname: '/product',
+                pathname: `/product/category/${params.id}`,
                 search: qs.stringify({
                     ...filter,
                     ...qs.parse(location.search.substring(1)),
@@ -193,7 +182,7 @@ const ProductList: React.FC = (props) => {
                 },
             });
             history.push({
-                pathname: '/product',
+                pathname: `/product/category/${params.id}`,
                 search: qs.stringify({
                     ...filter,
                     ...qs.parse(location.search.substring(1)),
@@ -295,6 +284,7 @@ const ProductList: React.FC = (props) => {
 
                             <div className="list-product-container">
                                 {productList?.map((item: any) => {
+                                    console.log(item)
                                     return (
                                         <ProductCard
                                             key={item?._id}
@@ -303,6 +293,7 @@ const ProductList: React.FC = (props) => {
                                     );
                                 })}
                             </div>
+
                             <div className="pagination">
                                 <div>Showing {totalItems} items</div>
                                 <Pagination count={totalPages} onChange={handlePageChange} />
@@ -315,4 +306,4 @@ const ProductList: React.FC = (props) => {
     );
 }
 
-export default ProductList;
+export default ProductListByCate;

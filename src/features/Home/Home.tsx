@@ -1,10 +1,54 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import BlogSlider from './components/BlogSlider/BlogSlider';
 import ProductSlider from '../../components/ProductSlider/ProductSlider';
+import { getAllProduct } from '../../api/productApi';
 
 const Home: React.FC = () => {
+
+    const [newsList, setNewsList] = useState([]);
+
+    const [featuresList, setFeaturesList] = useState([]);
+
+    useEffect(() => {
+        const fetchNewsList = async () => {
+            try {
+                const response: any = await getAllProduct({
+                    pageNo: 1,
+                    pageSize: 6,
+                    sort: "-_id"
+                });
+                console.log("new", response.result.data);
+                setNewsList(
+                    response && response.result && response.result.data
+                        ? response.result.data
+                        : []
+                );
+            } catch (error) { }
+        };
+        fetchNewsList();
+    }, []);
+
+    useEffect(() => {
+        const fetchFeaturesList = async () => {
+            try {
+                const response: any = await getAllProduct({
+                    pageNo: 1,
+                    pageSize: 6,
+                    sort: "-SoLuongDaBan"
+                });
+                console.log("feature", response.result.data);
+                setFeaturesList(
+                    response && response.result && response.result.data
+                        ? response.result.data
+                        : []
+                );
+            } catch (error) { }
+        };
+        fetchFeaturesList();
+    }, []);
+
     return (
         <div>
             <div className="container">
@@ -33,6 +77,7 @@ const Home: React.FC = () => {
             <ProductSlider
                 title={"New Arrivals"}
                 subTitle={"Take a look at new items in our shop."}
+                productList={newsList}
             />
 
             <div className="container">
@@ -62,6 +107,7 @@ const Home: React.FC = () => {
             <ProductSlider
                 title={"Trending Product"}
                 subTitle={"Find a bright ideal to suit your taste with our great selection of suspension, wall, floor and table lights."}
+                productList={featuresList}
             />
 
             <div className="container">

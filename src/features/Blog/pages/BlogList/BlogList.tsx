@@ -48,9 +48,8 @@ const BlogList: React.FC = () => {
         fetchBlogList();
     }, [filter]);
 
-    const handlePageChange = (event: {}, value: number) => {
-        console.log(event);
-        console.log(value);
+    const handlePageChange = (event: any, value: number) => {
+        event.preventDefault();
         setFilter({
             ...filter,
             pageNo: value,

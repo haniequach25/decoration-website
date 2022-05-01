@@ -1,0 +1,15 @@
+svg.css-1u4zpwo-MuiSvgIcon-root-MuiStepIcon-root.Mui-active {
+    color: var(--primary-dark);
+}
+
+.MuiInput-input.MuiInputBase-input.css-1x51dt5-MuiInputBase-input-MuiInput-input:after {
+    border-bottom: 2px solid var(--primary-dark);
+}
+
+svg.css-1u4zpwo-MuiSvgIcon-root-MuiStepIcon-root.Mui-completed {
+    color: var(--primary-main);
+}
+
+button.css-1dym4ij-MuiButtonBase-root-MuiButton-root {
+    color: var(--primary-dark);
+}

@@ -2,13 +2,27 @@ import React from 'react';
 import BreadCrumb from '../../../../components/BreadCrumb/BreadCrumb';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import DateRangeIcon from '@mui/icons-material/DateRange';
-import { Link, useRouteMatch } from 'react-router-dom';
+import { Link, useHistory, useRouteMatch } from 'react-router-dom';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import HomeIcon from '@mui/icons-material/Home';
+import { logoutUserAction } from '../../../../actions/user';
+import { useDispatch } from 'react-redux';
+import { removeToken } from '../Login/loginSlice';
 
 const MyAccount: React.FC = () => {
 
     const match = useRouteMatch();
+
+    const dispatch = useDispatch();
+
+    const history = useHistory();
+
+    const handleLogout = () => {
+        const action = logoutUserAction();
+        dispatch(action);
+        removeToken();
+        history.push("/");
+    }
 
     return (
         <div className='account-container'>
@@ -36,7 +50,12 @@ const MyAccount: React.FC = () => {
                 </div>
 
                 <div className="account-logout">
-                    <Link className="" id="identity-link" to={`${match.url}/information`}>
+                    <Link
+                        className=""
+                        id="identity-link"
+                        to="/"
+                        onClick={() => { handleLogout(); }}
+                    >
                         Sign out
                     </Link>
                 </div>

@@ -50,7 +50,7 @@ const BlogDetailForm: React.FC<{ detailBlog: any, handleAddComment: any }> = (pr
           <div className="blog-meta">
             <span className="blog-author">
               <PersonIcon /><span>Posted By: </span>
-              {detailBlog.TaiKhoan?.TenTacGia}
+              {detailBlog.TaiKhoan?.TenNhanVien}
             </span>
 
             <span className="blog-cat">

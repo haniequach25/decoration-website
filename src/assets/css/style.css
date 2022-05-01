@@ -6,6 +6,8 @@
 @import "./Product.css";
 @import "./Blog.css";
 @import "./Account.css";
+@import "./Cart.css";
+@import "./CheckOut.css";
 
 body {
     font-family: "Roboto","Helvetica","Arial",sans-serif;;

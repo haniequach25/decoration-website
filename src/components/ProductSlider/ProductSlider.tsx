@@ -5,54 +5,8 @@ import ProductCard from '../ProductCard/ProductCard';
 interface Properties {
     title?: string,
     subTitle?: string,
-    productList?: [],
+    productList: any,
 }
-
-interface Product {
-    id: number,
-    name: string,
-    price: number,
-    imageSrc: string,
-}
-
-const arrayList: Product[] = [
-    {
-        id: 1,
-        name: "Chair",
-        price: 11.5,
-        imageSrc: "https://apollotran.b-cdn.net/demo/at_auros/24-home_default/hummingbird-printed-t-shirt.jpg",
-    },
-
-    {
-        id: 2,
-        name: "Table",
-        price: 14.5,
-        imageSrc: "https://apollotran.b-cdn.net/demo/at_auros/24-home_default/hummingbird-printed-t-shirt.jpg",
-    },
-
-    {
-        id: 3,
-        name: "Folk",
-        price: 15.5,
-        imageSrc: "https://apollotran.b-cdn.net/demo/at_auros/24-home_default/hummingbird-printed-t-shirt.jpg",
-    },
-
-    {
-        id: 4,
-        name: "Spoon",
-        price: 17.5,
-        imageSrc: "https://apollotran.b-cdn.net/demo/at_auros/24-home_default/hummingbird-printed-t-shirt.jpg",
-    },
-
-    {
-        id: 5,
-        name: "Knife",
-        price: 20.5,
-        imageSrc: "https://apollotran.b-cdn.net/demo/at_auros/24-home_default/hummingbird-printed-t-shirt.jpg",
-    },
-
-
-]
 
 const ProductSlider: React.FC<Properties> = (props) => {
 
@@ -65,7 +19,7 @@ const ProductSlider: React.FC<Properties> = (props) => {
                     </h4>
 
                     <div className="sub-title-block">
-                        {props.subTitle || "Unknown"}
+                        {props.subTitle || ""}
                     </div>
                 </div>
 
@@ -73,12 +27,14 @@ const ProductSlider: React.FC<Properties> = (props) => {
                     slidesPerView={4}
                     spaceBetween={30}
                     freeMode={true}
-                    loop={true}
+                    loop={props.productList.length > 4 ? true : false}
                 >
-                    {arrayList?.map((item) => {
+                    {props.productList?.map((item: any) => {
                         return (
-                            <SwiperSlide key={item.id}>
-                                <ProductCard key={item.id} />
+                            <SwiperSlide key={item._id}>
+                                <ProductCard
+                                    item={item}
+                                />
                             </SwiperSlide>
                         );
                     })}

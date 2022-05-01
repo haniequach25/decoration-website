@@ -69,7 +69,7 @@
     margin-bottom: 1rem;
 }
 
-.table-bordered > div {
+.table-bordered {
     display: grid;
     width: 100%;
     grid-template-columns: repeat(7, 1fr);
@@ -82,18 +82,27 @@
     font-weight: bold;
 }
 
-.table-bordered > div div{
+.table-bordered > div:not(.ReactCollapse--collapse){
     padding: 12px;
     border: 1px solid var(--border-color);
 }
 
 .ReactCollapse--collapse {
+    grid-column: 1 / span 7;
     transition: height 500ms;
 }
 
 .ReactCollapse--collapse .table img {
     width: 60px;
     border: 1px solid var(--border-color);
+}
+
+div.ReactCollapse--collapse {
+    display: block;
+}
+
+.text-align-center {
+    text-align: center;
 }
 
 @media (min-width: 450px) {
