@@ -6,10 +6,13 @@ import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import { Box } from '@mui/system';
 import ProductSlider from '../../../../components/ProductSlider/ProductSlider';
 import { useHistory, useParams } from 'react-router-dom';
-import { getProductByCategory, getProductBySlug } from '../../../../api/productApi';
+import { getAllProduct, getProductByCategory, getProductById, getProductBySlug, postComment } from '../../../../api/productApi';
 import { useDispatch, useSelector } from 'react-redux';
 import { addToCart } from '../../../../actions/cart';
 import { setCartSlice } from '../../../CheckOut/cartSlice';
+import CommentForm from './CommentForm';
+import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
+import moment from 'moment';
 
 interface TabPanelProps {
     children?: React.ReactNode;
@@ -30,7 +33,7 @@ function TabPanel(props: TabPanelProps) {
         >
             {value === index && (
                 <Box sx={{ p: 3 }}>
-                    <Typography>{children}</Typography>
+                    <Box>{children}</Box>
                 </Box>
             )}
         </div>
@@ -46,6 +49,11 @@ function a11yProps(index: number) {
 
 
 const ProductDetail: React.FC = (props) => {
+
+    const [comments, setComments] = useState([]);
+
+    const [rating, setRating] = useState(0);
+
     const [value, setValue] = React.useState(0);
 
     const [currentImage, setCurrentImage] = useState("");
@@ -64,7 +72,7 @@ const ProductDetail: React.FC = (props) => {
 
     const cart = useSelector((state: any) => state.cart.cartItems);
 
-    console.log("cart", cart);
+    const customer = useSelector((state: any) => state.user.customer);
 
     useEffect(() => {
         const fetchProduct = async () => {
@@ -74,13 +82,13 @@ const ProductDetail: React.FC = (props) => {
                 console.log(response.data);
 
                 setProductDetail(
-                    response && response && response.data
+                    response && response.data
                         ? response.data
                         : {}
                 );
 
                 setCurrentImage(
-                    response && response && response.data && response.data.AnhMoTa
+                    response && response.data && response.data.AnhMoTa
                         ? response.data.AnhMoTa[0].source
                         : ""
                 )
@@ -92,6 +100,10 @@ const ProductDetail: React.FC = (props) => {
                         ? response2.result.data
                         : []
                 );
+
+                setComments(response.data.Comments);
+
+                setRating(response.data.averageRating);
             } catch (error) { }
         };
         fetchProduct();
@@ -116,8 +128,6 @@ const ProductDetail: React.FC = (props) => {
         }
     }
 
-    console.log(currentQuantity);
-
     const handleAddToCart = async (product: any) => {
         if (product.SoLuong > 0) {
 
@@ -130,6 +140,38 @@ const ProductDetail: React.FC = (props) => {
             history.push("/");
         }
     }
+
+    const onSubmitComment = async (data: any) => {
+        const params = {
+            ...data,
+            date: new Date(),
+        };
+        console.log(params, "params")
+        const post = await postComment(productDetail._id, data)
+            .then(() => {
+                const fetchProduct = async () => {
+                    try {
+                        const response: any = await getAllProduct({
+                            code: productDetail.code,
+                        });
+
+                        console.log(response);
+
+                        setProductDetail(
+                            response && response.result.data
+                                ? response.result.data[0]
+                                : {}
+                        );
+
+                        setComments(response.result.data[0].Comments);
+
+                        setRating(response.result.data[0].averageRating);
+                    } catch (error) { }
+                };
+                fetchProduct();
+            })
+            .catch((err) => console.log(err));
+    };
 
     return (
         <div>
@@ -188,7 +230,7 @@ const ProductDetail: React.FC = (props) => {
                                     {productDetail.TenSanPham}
                                 </h1>
 
-                                <Rating name="read-only" value={5} readOnly />
+                                <Rating name="read-only" value={rating} readOnly />
 
                                 <div className="current-price h5">
                                     <span>$ {productDetail.DonGia}</span>
@@ -239,7 +281,47 @@ const ProductDetail: React.FC = (props) => {
                                 </span>
                             </TabPanel>
                             <TabPanel value={value} index={1}>
-                                Item Two
+                                <div className="comments clearfix">
+                                    {console.log(comments, "comment")}
+                                    {comments.map((item: any) => {
+                                        return (
+                                            <div className="comment-item" key={item._id}>
+                                                <PersonOutlineIcon />
+                                                <div className="comment-wrap">
+                                                    <div className="comment-meta">
+                                                        <span className="comment-infor">
+                                                            <span className="comment-created">
+                                                                Created at:
+                                                                <span>{moment(item.date).format('lll')}</span>
+                                                            </span>
+                                                            <span className="comment-postedby">
+                                                                Name:
+                                                                <span>{item.commenter}</span>
+                                                            </span>
+                                                            <span className="comment-rating">
+                                                                Rate:
+                                                                <span><Rating value={item.rating} readOnly size='small' /></span>
+                                                            </span>
+                                                        </span>
+                                                    </div>
+
+                                                    <div className="comment-content">
+                                                        {item.content}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        );
+                                    })}
+                                    <div className="pagination clearfix pagination-comments">
+                                        Showing {comments.length} items
+                                    </div>
+                                </div>
+                                <h3
+                                    className="title-comment"
+                                    style={{ fontSize: "20px" }}
+                                >
+                                    Leave your comment</h3>
+                                <CommentForm customer={customer} onSubmit={onSubmitComment} />
                             </TabPanel>
                         </Box>
                     </div>

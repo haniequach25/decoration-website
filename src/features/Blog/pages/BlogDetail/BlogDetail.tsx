@@ -1,7 +1,8 @@
 import React, { useEffect, useReducer, useState } from "react";
 import { useParams } from "react-router-dom";
-import { addCommentByBlogId, getBlogBySlug } from "../../../../api/blogApi";
+import { getBlogBySlug, postCommentBlog } from "../../../../api/blogApi";
 import DetailBlogForm from "./BlogDetailForm/BlogDetailForm";
+import { useSelector } from 'react-redux'
 
 interface SlugParam {
   slug: string,
@@ -15,6 +16,8 @@ const BlogDetail: React.FC = () => {
   const [commentList, setCommentList] = useState([]);
 
   const [detailBlog, setDetailBlog]: any = useState({});
+
+  const customer = useSelector((state: any) => state.user.customer);
 
   useEffect(() => {
     const fetchDetailBlog = async () => {
@@ -30,7 +33,7 @@ const BlogDetail: React.FC = () => {
   console.log(detailBlog);
 
   const handleAddComment = async (data: any) => {
-    const result = await addCommentByBlogId(detailBlog?._id, data);
+    const result = await postCommentBlog(detailBlog?._id, data);
     if (result) {
       const fetchDetailBlog = async () => {
         try {
@@ -47,6 +50,7 @@ const BlogDetail: React.FC = () => {
       <DetailBlogForm
         detailBlog={detailBlog}
         handleAddComment={handleAddComment}
+        customer={customer}
       />
     </>
   );

@@ -20,7 +20,7 @@ const schema = yup
   })
   .required();
 
-const BlogDetailForm: React.FC<{ detailBlog: any, handleAddComment: any }> = (props) => {
+const BlogDetailForm: React.FC<{ detailBlog: any, handleAddComment: any, customer?: any }> = (props) => {
   const { detailBlog, handleAddComment } = props;
 
   const {
@@ -128,6 +128,7 @@ const BlogDetailForm: React.FC<{ detailBlog: any, handleAddComment: any }> = (pr
                     id="inputFullName"
                     className="form-control"
                     {...register("commenter")}
+                    defaultValue={props.customer?.TenKhachHang}
                   />
                   <p className="error-field">
                     {errors.commenter ? errors.commenter.message : ""}
@@ -146,6 +147,7 @@ const BlogDetailForm: React.FC<{ detailBlog: any, handleAddComment: any }> = (pr
                     id="inputEmail"
                     className="form-control"
                     {...register("email")}
+                    defaultValue={props.customer?.email}
                   />
                   <p className="error-field">
                     {errors.email ? errors.email.message : ""}

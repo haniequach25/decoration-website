@@ -23,23 +23,12 @@ export const getProductByCategory = (idCategory: any) => {
     return axiosClient.get(url, { params })
 }
 
-export const saveProduct = (params: any) => {
-    const id = params._id
-    let url = '/sanphams'
-    if (!id) {
-        return axiosClient.post(url, params)
-    } else {
-        url = url + `/${id}`
-        return axiosClient.put(url, params)
-    }
-}
-
-export const removeProduct = (parameter: any) => {
-    const url = `/sanphams/${parameter}`
-    return axiosClient.delete(url)
-}
-
 export const getAllCatProduct = (params?: any) => {
     const url = '/danhmucsps';
     return axiosClient.get(url, { params })
-} 
+}
+
+export const postComment = (id: any, params: any) => {
+    const url = `/sanphams/comment/${id}`
+    return axiosClient.put(url, params)
+}

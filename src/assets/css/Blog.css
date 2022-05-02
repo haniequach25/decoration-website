@@ -134,6 +134,7 @@
     text-align: justify;
     border-bottom: 2px solid var(--border-color);
     margin-bottom: 16px;
+    overflow-x: hidden;
 }
 
 .blog-detail .blog-comment-block h3 {
@@ -161,6 +162,12 @@
 
 .comment-infor > span {
     margin-right: 30px;
+}
+
+.comment-rating svg {
+    padding: 0;
+    width: 14px;
+    height: 14px;
 }
 
 .comment-wrap {

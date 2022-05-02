@@ -25,7 +25,7 @@ export const getBlogsByCategory = (idCategory: number) => {
   return axiosClient.get(url, param);
 };
 
-export const addCommentByBlogId = (id: number, params: any) => {
-  const url = `/comments/${id}`;
-  return axiosClient.put(url, { ...params, date: new Date() });
-};
+export const postCommentBlog = (id: any, params: any) => {
+  const url = `/blogs/comment/${id}`
+  return axiosClient.put(url, params)
+}
