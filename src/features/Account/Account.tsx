@@ -2,11 +2,13 @@ import { isBuffer } from 'lodash';
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { Redirect, Route, Switch, useRouteMatch } from 'react-router-dom';
+import ForgetPassword from './pages/ForgettPassword/ForgetPassword';
 import History from './pages/History/History';
 import Information from './pages/Information/Information';
 import Login from './pages/Login/Login';
 import MyAccount from './pages/MyAccount/MyAccount';
 import Register from './pages/Register/Register';
+import ResetPassword from './pages/ResetPassword/ResetPassword';
 
 function Account() {
 
@@ -42,6 +44,13 @@ function Account() {
 
                 <Route path={`${match.url}/register`}>
                     <Register />
+                </Route>
+
+                <Route path={`${match.url}/forgetpassword`}>
+                    <ForgetPassword />
+                </Route>
+                <Route path={`${match.url}/resetpassword`}>
+                    <ResetPassword />
                 </Route>
 
                 <Redirect to={`${match.url}/login`} />

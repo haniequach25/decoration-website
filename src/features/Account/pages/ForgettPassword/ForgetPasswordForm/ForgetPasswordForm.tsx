@@ -14,7 +14,6 @@ const schema = yup
             .trim()
             .email("Invalid email format")
             .required("This field is required"),
-        password: yup.string().required("This field is required").min(6),
     })
     .required();
 
@@ -23,7 +22,7 @@ interface Props {
 }
 
 
-const LoginForm: React.FC<Props> = (props) => {
+const ForgetPasswordForm: React.FC<Props> = (props) => {
 
     const {
         register,
@@ -40,8 +39,6 @@ const LoginForm: React.FC<Props> = (props) => {
             const response = await props.onSubmit(data);
             console.log(response);
         }
-        // handleAddComment(data);
-        // reset({ commenter: "", email: "", content: "" });
     };
 
     return (
@@ -50,10 +47,14 @@ const LoginForm: React.FC<Props> = (props) => {
             <div className="container">
                 <header className="page-header">
                     <h1>
-                        Đăng nhập
+                        Quên mật khẩu
                     </h1>
                 </header>
-
+                <h6
+                    style={{ textAlign: "center", fontWeight: "lighter" }}
+                >
+                    Hãy nhập email tài khoản để yêu cầu reset mật khẩu !
+                </h6>
                 <form
                     className="form-horizontal"
                     id="commnt_form"
@@ -79,28 +80,10 @@ const LoginForm: React.FC<Props> = (props) => {
                     </div>
 
                     <div className="form-group row">
-                        <div className="col-lg-3">
-                            <label className="control-label" htmlFor="inputPassword">Password</label>
-                        </div>
-                        <div className="col-lg-9">
-                            <input
-                                type={"password"}
-                                placeholder="Enter your password"
-                                id="inputPassword"
-                                className="form-control"
-                                {...register("password")}
-                            />
-                            <p className="error-field">
-                                {errors.password ? errors.password.message : ""}
-                            </p>
-                        </div>
-                    </div>
-
-                    <div className="form-group row">
                         <div className="col-lg-3"></div>
                         <div className="col-lg-9 col-lg-offset-3">
                             <button className="btn btn-secondary btn-outline btn-submit-comment-wrapper" name="submitcomment" type="submit">
-                                <span className="btn-submit-comment">Sign in</span>
+                                <span className="btn-submit-comment">Submit</span>
                                 <span className="leoblog-cssload-container cssload-speeding-wheel"></span>
                             </button>
                         </div>
@@ -110,10 +93,10 @@ const LoginForm: React.FC<Props> = (props) => {
                 <footer className="page-footer" style={{ justifyContent: "space-between" }}>
                     <Link to={"/account/register"} className="account-link">
                         <ArrowBackIosIcon />
-                        <span>Tạo tài khoản</span>
+                        <span>Không có tài khoản? Tạo ngay</span>
                     </Link>
-                    <Link to={"/account/forgetpassword"} className="account-link">
-                        <span>Quên mật khẩu?</span>
+                    <Link to={"/account/login"} className="account-link">
+                        <span>Đăng nhập</span>
                     </Link>
                 </footer>
             </div>
@@ -121,4 +104,4 @@ const LoginForm: React.FC<Props> = (props) => {
     );
 }
 
-export default LoginForm;
+export default ForgetPasswordForm;

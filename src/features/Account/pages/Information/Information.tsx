@@ -1,5 +1,5 @@
 import moment from 'moment';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { updateUserAction } from '../../../../actions/user';
@@ -41,6 +41,10 @@ const Information: React.FC = () => {
                 saveToken(token);
             })
     }
+
+    useEffect(() => {
+        document.title = "Thông tin cá nhân"
+    }, []);
 
     return (
         <div>

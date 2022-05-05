@@ -59,7 +59,7 @@ const Review: React.FC<Props> = (props) => {
                 onSubmit={handleSubmit(onSubmit)}
             >
                 <Typography variant="h6" gutterBottom>
-                    Order summary
+                    Sản phẩm
                 </Typography>
                 <List disablePadding>
                     {props.cartItems?.map((product: any) => (
@@ -78,12 +78,12 @@ const Review: React.FC<Props> = (props) => {
                 <Grid container spacing={2}>
                     <Grid item xs={12}>
                         <Typography variant="h6" gutterBottom sx={{ mt: 2 }}>
-                            Shipping information
+                            Thông tin giao hàng
                         </Typography>
                         <Typography gutterBottom>Email: {props.currentInfor?.email}</Typography>
                         <Typography gutterBottom>Tel: {props.currentInfor?.SDT}</Typography>
-                        <Typography gutterBottom>Address: {props.currentInfor?.DiaChi}</Typography>
-                        <Typography gutterBottom>Note: {props.currentInfor?.GhiChu}</Typography>
+                        <Typography gutterBottom>Địa chỉ: {props.currentInfor?.DiaChi}</Typography>
+                        <Typography gutterBottom>Ghi chú: {props.currentInfor?.GhiChu}</Typography>
                     </Grid>
                 </Grid>
                 <button

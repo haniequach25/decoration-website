@@ -58,7 +58,7 @@ const CommentForm: React.FC<Props> = (props) => {
         >
             <div className="form-group row">
                 <div className="col-lg-3">
-                    <label className="control-label" htmlFor="inputFullName">Name</label>
+                    <label className="control-label" htmlFor="inputFullName">Tên</label>
                 </div>
                 <div className="col-lg-9">
                     <input
@@ -96,7 +96,7 @@ const CommentForm: React.FC<Props> = (props) => {
 
             <div className="form-group row">
                 <div className="col-lg-3">
-                    <label className="control-label" htmlFor="inputEmail">Rating</label>
+                    <label className="control-label" htmlFor="inputEmail">Đánh giá</label>
                 </div>
                 <div className="col-lg-9">
                     <Rating onChange={(event, newValue: any) => {
@@ -112,7 +112,7 @@ const CommentForm: React.FC<Props> = (props) => {
 
             <div className="form-group row">
                 <div className="col-lg-3">
-                    <label className="control-label" htmlFor="inputEmail">Comment</label>
+                    <label className="control-label" htmlFor="inputEmail">Nội dung</label>
                 </div>
                 <div className="col-lg-9">
                     <textarea

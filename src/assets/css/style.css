@@ -83,6 +83,11 @@ a:focus, a:hover {
     border-color: var(--secondary-main);
 }
 
+#root .styles_scroll-to-top__2A70v {
+    right: 30px;
+    bottom: 100px;
+}
+
 @media (max-width: 1199px) {
     .container {
         padding-left: "15px";

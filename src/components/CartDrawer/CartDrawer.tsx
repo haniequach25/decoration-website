@@ -69,7 +69,7 @@ const CartDrawer: React.FC<Props> = (props) => {
                     id="nested-list-subheader"
                     className='cart-title'
                 >
-                    Cart items
+                    Giỏ hàng
                 </ListSubheader>
                 <Divider />
                 {cartItems && cartItems.length > 0 ? cartItems.map((item: any, index: any) => (
@@ -116,7 +116,7 @@ const CartDrawer: React.FC<Props> = (props) => {
                         </ListItem>
                     </div>
                 )) : (<ListItem>
-                    <ListItemText primary={"Nothing there..."} />
+                    <ListItemText primary={"Bạn chưa có sản phẩm nào..."} />
                 </ListItem>)
                 }
                 {cartItems.length > 0 ? (<>
@@ -124,7 +124,7 @@ const CartDrawer: React.FC<Props> = (props) => {
                     <ListItem>
                         <div className="cart-total-money">
                             <span className='total-money-text'>
-                                Total:
+                                Tổng tiền:
                             </span>
                             <span className='total-money-number'>
                                 $ {Math.round(cartTotalAmount * 100) / 100}
@@ -137,7 +137,7 @@ const CartDrawer: React.FC<Props> = (props) => {
                             className="btn btn-secondary button-clear"
                             onClick={() => { handleClearAll() }}
                         >
-                            Clear all
+                            Dọn giỏ hàng
                         </button>
                     </ListItem>
 
@@ -147,7 +147,7 @@ const CartDrawer: React.FC<Props> = (props) => {
                             to={token ? "/checkout" : "/account/login"}
                             onClick={() => { props.setOpen(false) }}
                         >
-                            Check Out
+                            Thanh toán
                         </Link>
                     </ListItem>
                 </>) : ""}

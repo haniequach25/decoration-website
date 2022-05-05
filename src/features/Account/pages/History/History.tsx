@@ -17,35 +17,39 @@ const CollapseItem: React.FC<Props> = (props) => {
 
     const [isExpanded, setExpanded] = useState(false);
 
+    useEffect(() => {
+        document.title = "Lịch sử đặt hàng"
+    }, []);
+
     return (
         <>
             <div>{props.item._id}</div>
             <div>{moment(props.item.createdAt).format('lll')}</div>
             <div>$ {props.item.TongTien}</div>
-            <div>{props.item.GhiChu ? props.item.GhiChu : "None"}</div>
+            <div>{props.item.GhiChu ? props.item.GhiChu : "Không"}</div>
             <div>
                 {props.item.DiaChi}
             </div>
             <div className="text-sm-center">
-                {props.item.TinhTrangThanhToan === 0 ? "Pending" : "Success"}
+                {props.item.TinhTrangThanhToan === 0 ? "Đang chờ" : "Thành công"}
             </div>
             <div className="text-sm-center">
                 <button
                     className='btn'
                     onClick={() => setExpanded((prevExpanded) => !prevExpanded)}
                 >
-                    Details
+                    Chi tiết
                 </button>
             </div>
             <Collapse isOpened={isExpanded}>
                 <table className="table table-striped">
                     <thead className="thead-default">
                         <tr>
-                            <th className='text-align-center'>Image</th>
-                            <th >Name</th>
-                            <th className="text-align-center">Price</th>
-                            <th className="text-align-center">Quantity</th>
-                            <th className="text-align-center">Total</th>
+                            <th className='text-align-center'>Ảnh</th>
+                            <th >Tên</th>
+                            <th className="text-align-center">Giá</th>
+                            <th className="text-align-center">Số lượng</th>
+                            <th className="text-align-center">Tổng</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -133,19 +137,19 @@ const History: React.FC = (props) => {
             <div className="container">
                 <header className="page-header">
                     <h1>
-                        Order history
+                        Lịch sử đơn hàng
                     </h1>
                 </header>
 
-                <h6>Here are the orders you've placed since your account was created.</h6>
+                <h6>Đây là các đơn hàng của bạn từ khi tạo tài khoản.</h6>
 
                 <div className="table-bordered">
-                    <div>Order reference</div>
-                    <div>Date</div>
-                    <div>Total price</div>
-                    <div>Note</div>
-                    <div>Address</div>
-                    <div className="text-sm-center">Status</div>
+                    <div>ID đơn hàng</div>
+                    <div>Ngày</div>
+                    <div>Tổng tiền</div>
+                    <div>Ghi chú</div>
+                    <div>Địa chỉ</div>
+                    <div className="text-sm-center">Trạng thái</div>
                     <div>&nbsp;</div>
                     {orderList.map((item: any) => {
                         return (
@@ -155,18 +159,18 @@ const History: React.FC = (props) => {
                 </div>
 
                 <div className="pagination">
-                    <div>Showing {totalItems} items</div>
+                    <div>Đang hiện {totalItems} đơn hàng</div>
                     <Pagination count={totalPages} onChange={handlePageChange} />
                 </div>
 
                 <footer className="page-footer">
                     <Link to={"/account"} className="account-link">
                         <ArrowBackIosIcon />
-                        <span>Back to your account</span>
+                        <span>Trở lại tài khoản</span>
                     </Link>
                     <Link to={"/"} className="account-link">
                         <HomeIcon />
-                        <span>Home</span>
+                        <span>Trang chủ</span>
                     </Link>
                 </footer>
             </div>

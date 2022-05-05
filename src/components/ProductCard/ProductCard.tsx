@@ -1,11 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import numberWithCommas from '../../MoneyFormat';
 
 interface Properties {
     item: any,
 }
 
 const ProductCard: React.FC<Properties> = (props) => {
+
     return (
         <div className='thumbnail-container'>
             <div className="product-image">
@@ -34,8 +36,8 @@ const ProductCard: React.FC<Properties> = (props) => {
 
                 <div className="product-price">
                     <div className="price">
-                        <span>$ </span>
-                        <span>{props.item.DonGia || 0}</span>
+                        <span>{numberWithCommas(props.item.DonGia) || 0}</span>
+                        <span> VNĐ</span>
                     </div>
                 </div>
             </div>

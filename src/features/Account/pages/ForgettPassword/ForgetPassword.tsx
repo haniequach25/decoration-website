@@ -1,20 +1,19 @@
 import React, { useEffect } from 'react';
-import { Store } from 'react-notifications-component';
 import { useHistory } from 'react-router-dom';
-import { saveUser } from '../../../../api/userApi';
-import RegisterForm from './RegisterForm/RegisterForm';
+import { getReset } from '../../../../api/userApi';
+import ForgetPasswordForm from './ForgetPasswordForm/ForgetPasswordForm';
+import { Store } from 'react-notifications-component';
 
-const Register: React.FC = () => {
+const ForgetPassword: React.FC = (props) => {
 
     const history = useHistory();
 
-    const handleSubmit = async (data: any) => {
-        const response = await saveUser({ ...data, NgaySinh: Date.parse(data.NgaySinh), _id: 0, TrangThai: 1 })
-            .then((resolve: any) => {
-                history.push("/account/login");
+    const onSubmit = async (data: any) => {
+        const action = await getReset(data)
+            .then((resolve) => {
                 Store.addNotification({
                     title: "Success!",
-                    message: "Sign up successfully",
+                    message: "Sent request successfully. Please check your email for the reset password link !",
                     type: "success",
                     insert: "top",
                     container: "top-center",
@@ -22,36 +21,38 @@ const Register: React.FC = () => {
                     animationOut: ["animate__animated", "animate__fadeOut"],
                     dismiss: {
                         duration: 5000,
-                        onScreen: false
+                        onScreen: true
                     }
-                })
+                });
+                history.push("/account/login");
             })
             .catch((error) => {
+                console.log(error);
                 Store.addNotification({
                     title: "Failed!",
                     message: error.message,
-                    type: 'danger',
+                    type: "danger",
                     insert: "top",
                     container: "top-center",
-                    animationIn: ["animate__animated animate__fadeIn"],
-                    animationOut: ["animate__animated animate__fadeOut"],
+                    animationIn: ["animate__animated", "animate__fadeIn"],
+                    animationOut: ["animate__animated", "animate__fadeOut"],
                     dismiss: {
                         duration: 5000,
-                        onScreen: false
+                        onScreen: true
                     }
-                })
+                });
             });
-    }
+    };
 
     useEffect(() => {
-        document.title = "Đăng ký"
+        document.title = "Quên mật khẩu"
     }, []);
 
     return (
         <div>
-            <RegisterForm onSubmit={handleSubmit} />
+            <ForgetPasswordForm onSubmit={onSubmit} />
         </div>
     );
 }
 
-export default Register;
+export default ForgetPassword;

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import BreadCrumb from '../../../../components/BreadCrumb/BreadCrumb';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import DateRangeIcon from '@mui/icons-material/DateRange';
@@ -23,6 +23,10 @@ const MyAccount: React.FC = () => {
         removeToken();
         history.push("/");
     }
+
+    useEffect(() => {
+        document.title = "Tài khoản"
+    }, []);
 
     return (
         <div className='account-container'>

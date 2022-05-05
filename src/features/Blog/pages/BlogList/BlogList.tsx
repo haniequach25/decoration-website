@@ -18,8 +18,12 @@ const BlogList: React.FC = () => {
 
     const [filter, setFilter] = useState({
         pageNo: 1,
-        pageSize: 3,
+        pageSize: 6,
     })
+
+    useEffect(() => {
+        document.title = "Blog"
+    }, []);
 
     useEffect(() => {
         const fetchBlogList = async () => {
@@ -64,7 +68,7 @@ const BlogList: React.FC = () => {
                 <div className="container">
                     <div className="blog-listing">
                         <h1 className="section-title blog-lastest-title">
-                            Lastest Blogs
+                            Blog mới nhất
                         </h1>
 
                         <div className="blog-list-grid">
@@ -109,7 +113,7 @@ const BlogList: React.FC = () => {
                         </div>
 
                         <div className="pagination">
-                            <div>Showing {totalItems} items</div>
+                            <div>Đang hiện {totalItems} blog</div>
                             <Pagination count={totalPages} onChange={handlePageChange} />
                         </div>
                     </div>

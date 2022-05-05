@@ -47,11 +47,11 @@ const BlogSlider: React.FC = () => {
             <div className="container">
                 <div className="row box-product">
                     <h4 className="title-block">
-                        Our Blog
+                        Blog của chúng tôi
                     </h4>
 
                     <div className="sub-title-block">
-                        Find a bright ideal to suit your taste with our great selection
+                        Khám phá ra các mẹo hay trang trí cho ngôi nhà của bạn
                     </div>
                 </div>
 
@@ -100,7 +100,7 @@ const BlogSlider: React.FC = () => {
                                         </p>
                                         <p>
                                             <Link to={`blog/${item.slug}`} className="link-readmore">
-                                                + Read more
+                                                + Đọc thêm
                                             </Link>
                                         </p>
                                     </div>

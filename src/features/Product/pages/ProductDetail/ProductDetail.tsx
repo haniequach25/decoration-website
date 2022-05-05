@@ -1,4 +1,4 @@
-import { Rating, Tab, Tabs, Typography } from '@mui/material';
+import { Rating, Tab, Tabs } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import BreadCrumb from '../../../../components/BreadCrumb/BreadCrumb';
@@ -6,13 +6,14 @@ import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import { Box } from '@mui/system';
 import ProductSlider from '../../../../components/ProductSlider/ProductSlider';
 import { useHistory, useParams } from 'react-router-dom';
-import { getAllProduct, getProductByCategory, getProductById, getProductBySlug, postComment } from '../../../../api/productApi';
+import { getAllProduct, getProductByCategory, getProductBySlug, postComment } from '../../../../api/productApi';
 import { useDispatch, useSelector } from 'react-redux';
 import { addToCart } from '../../../../actions/cart';
 import { setCartSlice } from '../../../CheckOut/cartSlice';
 import CommentForm from './CommentForm';
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
 import moment from 'moment';
+import numberWithCommas from '../../../../MoneyFormat';
 
 interface TabPanelProps {
     children?: React.ReactNode;
@@ -74,6 +75,8 @@ const ProductDetail: React.FC = (props) => {
 
     const customer = useSelector((state: any) => state.user.customer);
 
+    const [productName, setProductName] = useState('Sản phẩm');
+
     useEffect(() => {
         const fetchProduct = async () => {
             try {
@@ -86,6 +89,10 @@ const ProductDetail: React.FC = (props) => {
                         ? response.data
                         : {}
                 );
+
+                console.log(response.data.TenSanPham, "ten san pham")
+
+                setProductName(response.data.TenSanPham);
 
                 setCurrentImage(
                     response && response.data && response.data.AnhMoTa
@@ -116,7 +123,7 @@ const ProductDetail: React.FC = (props) => {
 
     const onChangeQuantity = (event: any) => {
         if (event.target.value > productDetail.SoLuong) {
-            setCurrentQuantity(productDetail.SoLuong);
+            setCurrentQuantity(Number.parseInt(productDetail.SoLuong));
         }
 
         else if (event.target.value < 1) {
@@ -124,7 +131,7 @@ const ProductDetail: React.FC = (props) => {
         }
 
         else {
-            setCurrentQuantity(event.target.value);
+            setCurrentQuantity(Number.parseInt(event.target.value));
         }
     }
 
@@ -172,6 +179,10 @@ const ProductDetail: React.FC = (props) => {
             })
             .catch((err) => console.log(err));
     };
+
+    useEffect(() => {
+        document.title = productName;
+    }, [productName]);
 
     return (
         <div>
@@ -221,9 +232,9 @@ const ProductDetail: React.FC = (props) => {
                             <div className='product-information'>
                                 <div className="product-quantities">
                                     <label className={`label ${productDetail.SoLuong === 0 ? "out-stock-label" : ""}`}>
-                                        {productDetail.SoLuong === 0 ? "Out stock" : "In stock"}
+                                        {productDetail.SoLuong === 0 ? "Hết hàng" : "Còn hàng"}
                                     </label>
-                                    <span>{productDetail.SoLuong} Items</span>
+                                    <span>{productDetail.SoLuong} sản phẩm</span>
                                 </div>
 
                                 <h1 className="product-detail-name">
@@ -233,14 +244,14 @@ const ProductDetail: React.FC = (props) => {
                                 <Rating name="read-only" value={rating} readOnly />
 
                                 <div className="current-price h5">
-                                    <span>$ {productDetail.DonGia}</span>
+                                    <span>{numberWithCommas(productDetail.DonGia)} VNĐ</span>
                                 </div>
 
                                 <div className="product-action">
                                     <form action="">
                                         <div className="product-quantity clearfix">
                                             <div className="">
-                                                <span className="control-label">Quantity</span>
+                                                <span className="control-label">Số lượng</span>
                                                 <input
                                                     type="number"
                                                     className='input-quantity'
@@ -257,7 +268,7 @@ const ProductDetail: React.FC = (props) => {
                                                     disabled={productDetail.SoLuong === 0 ? true : false}
                                                 >
                                                     <AddShoppingCartIcon style={{ marginRight: "10px" }} />
-                                                    Add to cart
+                                                    Thêm vào giỏ hàng
                                                 </button>
                                             </div>
                                         </div>
@@ -269,7 +280,7 @@ const ProductDetail: React.FC = (props) => {
                         <Box sx={{ width: '100%' }}>
                             <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
                                 <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
-                                    <Tab label="Description" {...a11yProps(0)} />
+                                    <Tab label="Mô tả" {...a11yProps(0)} />
                                     <Tab label="Reviews" {...a11yProps(1)} />
                                 </Tabs>
                             </Box>
@@ -291,15 +302,15 @@ const ProductDetail: React.FC = (props) => {
                                                     <div className="comment-meta">
                                                         <span className="comment-infor">
                                                             <span className="comment-created">
-                                                                Created at:
+                                                                Lúc:
                                                                 <span>{moment(item.date).format('lll')}</span>
                                                             </span>
                                                             <span className="comment-postedby">
-                                                                Name:
+                                                                Tên:
                                                                 <span>{item.commenter}</span>
                                                             </span>
                                                             <span className="comment-rating">
-                                                                Rate:
+                                                                Đánh giá:
                                                                 <span><Rating value={item.rating} readOnly size='small' /></span>
                                                             </span>
                                                         </span>
@@ -313,14 +324,14 @@ const ProductDetail: React.FC = (props) => {
                                         );
                                     })}
                                     <div className="pagination clearfix pagination-comments">
-                                        Showing {comments.length} items
+                                        Đang hiện {comments.length} comments
                                     </div>
                                 </div>
                                 <h3
                                     className="title-comment"
                                     style={{ fontSize: "20px" }}
                                 >
-                                    Leave your comment</h3>
+                                    Để lại đánh giá của bạn</h3>
                                 <CommentForm customer={customer} onSubmit={onSubmitComment} />
                             </TabPanel>
                         </Box>
@@ -328,7 +339,7 @@ const ProductDetail: React.FC = (props) => {
                 </div>
 
                 <ProductSlider
-                    title='YOU MIGHT ALSO LIKE'
+                    title='Có thể bạn sẽ thích'
                     subTitle=''
                     productList={relateList}
                 />

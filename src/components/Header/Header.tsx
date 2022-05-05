@@ -33,6 +33,8 @@ function Header() {
 
     const name: any = useSelector((state: any) => state.user.customer);
 
+    const quantityCart: any = useSelector((state: any) => state.cart.cartTotalQuantity);
+    console.log(quantityCart, "quantity")
     useEffect(() => {
         const fetchNewsList = async () => {
             try {
@@ -78,7 +80,7 @@ function Header() {
         if (e.key === 'Enter') {
             history.push({
                 pathname: '/product',
-                search: `?keywords=${wordEntered}&pageNo=1&pageSize=3`
+                search: `?keywords=${wordEntered}&pageNo=1&pageSize=6`
             });
             setWordEntered("");
         }
@@ -87,7 +89,7 @@ function Header() {
     const handleSearch = () => {
         history.push({
             pathname: '/product',
-            search: `?keywords=${wordEntered}&pageNo=1&pageSize=3`
+            search: `?keywords=${wordEntered}&pageNo=1&pageSize=6`
         });
         setWordEntered("");
     }
@@ -101,14 +103,14 @@ function Header() {
 
                 <div className="header-bottom">
                     <ul className='header-navbar'>
-                        <li className='dropdown-parent'><Link to="/">Home</Link></li>
+                        <li className='dropdown-parent'><Link to="/">Trang chủ</Link></li>
                         <li className='dropdown-parent dropdown'>
                             <Link
                                 to={{
                                     pathname: "/product",
-                                    search: "?pageNo=1&pageSize=3&sort=_id",
+                                    search: "?pageNo=1&pageSize=6&sort=_id",
                                 }}
-                            >Product<KeyboardArrowDownIcon /></Link>
+                            >Sản phẩm<KeyboardArrowDownIcon /></Link>
                             <div className="dropdown-menu level1">
                                 <div className="row">
                                     <ul>
@@ -117,7 +119,7 @@ function Header() {
                                                 <li key={item?._id}>
                                                     <Link to={{
                                                         pathname: `/product/category/${item._id}`,
-                                                        search: "?pageNo=1&pageSize=3&sort=_id",
+                                                        search: "?pageNo=1&pageSize=6&sort=_id",
                                                     }}>{item.TenDanhMucSP}</Link>
                                                 </li>
                                             );
@@ -127,7 +129,7 @@ function Header() {
                             </div>
                         </li>
                         <li className='dropdown-parent'><Link to="/blog">Blog</Link></li>
-                        <li className='dropdown-parent'><Link to="/">Contact</Link></li>
+                        <li className='dropdown-parent'><Link to="/contact">Liên hệ</Link></li>
                     </ul>
 
                     <ul className="header-user-interaction">
@@ -177,22 +179,22 @@ function Header() {
                                             <AccountCircleIcon />User: {name?.TenKhachHang}
                                             <li>
                                                 <SettingsIcon />
-                                                <Link to="/account">My account</Link>
+                                                <Link to="/account">Tài khoản</Link>
                                             </li>
                                             <li>
                                                 <LogoutIcon />
-                                                <Link to="/" onClick={() => { handleLogout(); }}>Logout</Link>
+                                                <Link to="/" onClick={() => { handleLogout(); }}>Đăng xuất</Link>
                                             </li>
                                         </ul>
                                     ) : (
                                         <ul>
                                             <li>
                                                 <LoginIcon />
-                                                <Link to="/account/login">Login</Link>
+                                                <Link to="/account/login">Đăng nhập</Link>
                                             </li>
                                             <li>
                                                 <VpnKeyIcon />
-                                                <Link to="/account/register">Register</Link>
+                                                <Link to="/account/register">Đăng ký</Link>
                                             </li>
                                         </ul>
                                     )}
@@ -201,6 +203,7 @@ function Header() {
                         </div>
                         <div className="cart-block" onClick={() => setOpenWithHeader(true)}>
                             <ShoppingCartOutlinedIcon className='icon-block' />
+                            <span className="cart-products-count">{quantityCart}</span>
                         </div>
                     </ul>
                 </div>

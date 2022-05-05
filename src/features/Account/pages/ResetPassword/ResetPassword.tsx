@@ -1,25 +1,27 @@
 import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { loginUserAction } from '../../../../actions/user';
-import { login } from '../../../../api/userApi';
-import LoginForm from './LoginForm/LoginForm';
-import { saveToken } from './loginSlice';
+import { useHistory, useLocation } from 'react-router-dom';
+import { resetPass } from '../../../../api/userApi';
+
 import { Store } from 'react-notifications-component';
+import ResetPasswordForm from './ResetPasswordForm/ResetPasswordForm';
+import qs from "qs";
 
-const Login: React.FC = (props) => {
+const ResetPassword: React.FC = (props) => {
 
-    const dispatch = useDispatch();
+    const history = useHistory();
 
-    const handleSubmit = async (data: any) => {
-        const response: any = await login(data)
+    const location = useLocation();
+
+    const onSubmit = async (data: any) => {
+        const resetToken = qs.parse(location.search) && qs.parse(location.search.substring(1)).q ? qs.parse(location.search.substring(1)).q : "";
+        data = { newPassword: data.newPassword, resetToken: resetToken }
+        console.log(qs.parse(location.search.substring(1)).q, "resetToken")
+        const action = await resetPass(data)
             .then((resolve: any) => {
-                console.log(resolve);
-                const action = loginUserAction(resolve);
-                dispatch(action);
-                saveToken(resolve);
+                history.push("/account/login");
                 Store.addNotification({
                     title: "Success!",
-                    message: "Login successfully",
+                    message: "Your new password have been requested. Please login with your new password !",
                     type: "success",
                     insert: "top",
                     container: "top-center",
@@ -46,17 +48,17 @@ const Login: React.FC = (props) => {
                     }
                 })
             });
-    }
+    };
 
     useEffect(() => {
-        document.title = "Đăng nhập"
+        document.title = "Reset mật khẩu"
     }, []);
 
     return (
         <div>
-            <LoginForm onSubmit={handleSubmit} />
+            <ResetPasswordForm onSubmit={onSubmit} />
         </div>
     );
 }
 
-export default Login;
+export default ResetPassword;

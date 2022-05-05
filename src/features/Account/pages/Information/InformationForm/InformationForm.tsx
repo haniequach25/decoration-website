@@ -60,7 +60,7 @@ const InformationForm: React.FC<Props> = (props) => {
             <div className="container">
                 <header className="page-header">
                     <h1>
-                        Your personal information
+                        Thông tin cá nhân
                     </h1>
                 </header>
 
@@ -72,7 +72,7 @@ const InformationForm: React.FC<Props> = (props) => {
                 >
                     <div className="form-group row">
                         <div className="col-lg-3">
-                            <label className="control-label" htmlFor="inputFullName">Full Name</label>
+                            <label className="control-label" htmlFor="inputFullName">Tên</label>
                         </div>
                         <div className="col-lg-9">
                             <input
@@ -110,7 +110,7 @@ const InformationForm: React.FC<Props> = (props) => {
 
                     <div className="form-group row">
                         <div className="col-lg-3">
-                            <label className="control-label" htmlFor="inputDiaChi">Address</label>
+                            <label className="control-label" htmlFor="inputDiaChi">Địa chỉ</label>
                         </div>
                         <div className="col-lg-9">
                             <input
@@ -129,7 +129,7 @@ const InformationForm: React.FC<Props> = (props) => {
 
                     <div className="form-group row">
                         <div className="col-lg-3">
-                            <label className="control-label" htmlFor="inputSDT">Telephone</label>
+                            <label className="control-label" htmlFor="inputSDT">Điện thoại</label>
                         </div>
                         <div className="col-lg-9">
                             <input
@@ -148,7 +148,7 @@ const InformationForm: React.FC<Props> = (props) => {
 
                     <div className="form-group row">
                         <div className="col-lg-3">
-                            <label className="control-label" htmlFor="inputNgaySinh">Date of birth</label>
+                            <label className="control-label" htmlFor="inputNgaySinh">Ngày sinh</label>
                         </div>
                         <div className="col-lg-9">
                             <input
@@ -185,7 +185,7 @@ const InformationForm: React.FC<Props> = (props) => {
 
                     <div className="form-group row">
                         <div className="col-lg-3">
-                            <label className="control-label" htmlFor="inputRePassword">Confirm password</label>
+                            <label className="control-label" htmlFor="inputRePassword">Xác nhận password</label>
                         </div>
                         <div className="col-lg-9">
                             <input
@@ -215,11 +215,11 @@ const InformationForm: React.FC<Props> = (props) => {
                 <footer className="page-footer">
                     <Link to={"/account"} className="account-link">
                         <ArrowBackIosIcon />
-                        <span>Back to your account</span>
+                        <span>Tài khoản</span>
                     </Link>
                     <Link to={"/"} className="account-link">
                         <HomeIcon />
-                        <span>Home</span>
+                        <span>Trang chủ</span>
                     </Link>
                 </footer>
             </div>

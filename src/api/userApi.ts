@@ -26,3 +26,12 @@ export const me = () => {
   const url = "/khachhangs/me";
   return axiosClient.get(url);
 };
+
+export const getReset = (params: any) => {
+  const url = '/khachhangs/getReset'
+  return axiosClient.post(url, params)
+}
+export const resetPass = (params: any) => {
+  const url = '/khachhangs/resetpass'
+  return axiosClient.post(url, params)
+} 

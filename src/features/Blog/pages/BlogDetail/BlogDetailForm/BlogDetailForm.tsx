@@ -49,17 +49,17 @@ const BlogDetailForm: React.FC<{ detailBlog: any, handleAddComment: any, custome
 
           <div className="blog-meta">
             <span className="blog-author">
-              <PersonIcon /><span>Posted By: </span>
+              <PersonIcon /><span>Đăng bởi: </span>
               {detailBlog.TaiKhoan?.TenNhanVien}
             </span>
 
             <span className="blog-cat">
-              <CategoryIcon /><span>Category: </span>
+              <CategoryIcon /><span>Danh mục: </span>
               {detailBlog.DanhMucBlog?.TenDanhMucBlog}
             </span>
 
             <span className="blog-created">
-              <AccessTimeIcon /><span>Last updated: </span>
+              <AccessTimeIcon /><span>Cập nhật lúc: </span>
               <time className="date">
                 {detailBlog.updatedAt ? moment(detailBlog.updatedAt).format('lll') : "???"}
               </time>
@@ -88,11 +88,11 @@ const BlogDetailForm: React.FC<{ detailBlog: any, handleAddComment: any, custome
                       <div className="comment-meta">
                         <span className="comment-infor">
                           <span className="comment-created">
-                            Created at:
+                            Lúc:
                             <span>{comment.date ? moment(comment.date).format('lll') : "???"}</span>
                           </span>
                           <span className="comment-postedby">
-                            Name:
+                            Tên:
                             <span>{comment.commenter}</span>
                           </span>
                         </span>
@@ -106,11 +106,11 @@ const BlogDetailForm: React.FC<{ detailBlog: any, handleAddComment: any, custome
                 );
               })}
               <div className="pagination clearfix pagination-comments">
-                Showing {detailBlog.Comments?.length} items
+                Đang hiện {detailBlog.Comments?.length} comments
               </div>
             </div>
 
-            <h3 className="title-comment">Leave your comment</h3>
+            <h3 className="title-comment">Để lại bình luận của bạn</h3>
             <form
               className="form-horizontal"
               id="commnt_form"
@@ -119,7 +119,7 @@ const BlogDetailForm: React.FC<{ detailBlog: any, handleAddComment: any, custome
             >
               <div className="form-group row">
                 <div className="col-lg-3">
-                  <label className="control-label" htmlFor="inputFullName">Full Name</label>
+                  <label className="control-label" htmlFor="inputFullName">Tên</label>
                 </div>
                 <div className="col-lg-9">
                   <input
@@ -157,7 +157,7 @@ const BlogDetailForm: React.FC<{ detailBlog: any, handleAddComment: any, custome
 
               <div className="form-group row">
                 <div className="col-lg-3">
-                  <label className="control-label" htmlFor="inputComment">Comment</label>
+                  <label className="control-label" htmlFor="inputComment">Nội dung</label>
                 </div>
                 <div className="col-lg-9">
                   <textarea

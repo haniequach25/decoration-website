@@ -45,7 +45,7 @@ const cartReducer = (state = initialState, action: any) => {
                     return {
                         ...state,
                         cartItems: tempCartItems,
-                        cartTotalQuantity: quantity,
+                        cartTotalQuantity: Number.parseFloat(quantity),
                         cartTotalAmount: total,
                     }
                 }

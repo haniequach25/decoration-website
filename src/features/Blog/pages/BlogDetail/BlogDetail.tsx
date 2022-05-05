@@ -17,6 +17,8 @@ const BlogDetail: React.FC = () => {
 
   const [detailBlog, setDetailBlog]: any = useState({});
 
+  const [blogName, setBlogName] = useState("Blog");
+
   const customer = useSelector((state: any) => state.user.customer);
 
   useEffect(() => {
@@ -24,13 +26,16 @@ const BlogDetail: React.FC = () => {
       try {
         const response = await getBlogBySlug(slug);
         setDetailBlog(response.data);
+        setBlogName(response.data.TieuDe);
         setCommentList(response.data.Comments);
       } catch (error) { }
     };
     fetchDetailBlog();
   }, []);
 
-  console.log(detailBlog);
+  useEffect(() => {
+    document.title = blogName;
+  }, [blogName]);
 
   const handleAddComment = async (data: any) => {
     const result = await postCommentBlog(detailBlog?._id, data);

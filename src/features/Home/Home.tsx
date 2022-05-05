@@ -49,6 +49,10 @@ const Home: React.FC = () => {
         fetchFeaturesList();
     }, []);
 
+    useEffect(() => {
+        document.title = "Trang chủ"
+    }, []);
+
     return (
         <div>
             <div className="container">
@@ -59,24 +63,24 @@ const Home: React.FC = () => {
                     <div className="slide-content">
                         <div className="tp-caption  h1-style-2" data-x="240" data-y="360" data-transition="fade" >
                             <div className="caption-contain" >
-                                Etna
+                                Decór
                             </div>
                         </div>
 
                         <div className="tp-caption  h1-style-3" data-x="240" data-y="475" data-transition="fade" >
-                            <span>From</span> $650.00
+                            <span>Chỉ từ</span> 50 nghìn VNĐ
                         </div>
 
                         <div className="tp-caption  h1-style-4" data-x="240" data-y="545" data-transition="fade">
-                            <Link className="slide-btn btn btn-contained" to="/" title="Shop Now">Shop Now</Link>
+                            <Link className="slide-btn btn btn-contained" to="/product" title="Shop Now">Xem ngay</Link>
                         </div>
                     </div>
                 </div>
             </div>
 
             <ProductSlider
-                title={"New Arrivals"}
-                subTitle={"Take a look at new items in our shop."}
+                title={"Sản phẩm mới"}
+                subTitle={"Hãy xem các mặt hàng mới trong cửa hàng của chúng tôi."}
                 productList={newsList}
             />
 
@@ -86,27 +90,29 @@ const Home: React.FC = () => {
                     style={{ backgroundImage: `url(https://ld-wp73.template-help.com/woocommerce/prod_22039/v2/wp-content/uploads/2021/05/Rectangle-5.png)` }}
                 >
                     <div className="slide-content-center">
-                        <Link to={"/"} className="play-button">
+                        <a
+                            target="_blank"
+                            href="https://www.youtube.com/watch?v=HnYX87jwG3I" className="play-button">
                             <span>
                                 <PlayArrowIcon className='play-button-icon' />
                             </span>
-                        </Link>
+                        </a>
                         <div className="tp-caption  h1-style-2" data-x="240" data-y="360" data-transition="fade" >
                             <div className="caption-contain" >
-                                Doing Their Own Hands
+                                Tô điểm thế giới trong ngôi nhà của bạn
                             </div>
                         </div>
 
                         <div className="sub-title-block" data-x="240" data-y="475" data-transition="fade" >
-                            How to Decorate a Birthday Gift Box!
+                            Cách để trang trí hộp quà
                         </div>
                     </div>
                 </div>
             </div>
 
             <ProductSlider
-                title={"Trending Product"}
-                subTitle={"Find a bright ideal to suit your taste with our great selection of suspension, wall, floor and table lights."}
+                title={"Sản phẩm nổi bật"}
+                subTitle={"Tìm một nơi lý tưởng phù hợp với sở thích của bạn với các sự lựa chọn tuyệt vời của chúng tôi về đèn treo, đèn tường, đèn sàn và đèn bàn"}
                 productList={featuresList}
             />
 

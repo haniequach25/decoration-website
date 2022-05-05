@@ -1,10 +1,10 @@
-import { Checkbox, FormControl, FormControlLabel, FormGroup, InputLabel, MenuItem, Pagination, Radio, RadioGroup, Select } from '@mui/material';
+import { FormControl, FormControlLabel, MenuItem, Pagination, Radio, RadioGroup, Select } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { Link, useHistory, useLocation } from 'react-router-dom';
 import { getAllCatProduct, getAllProduct } from '../../../../api/productApi';
 import BreadCrumb from '../../../../components/BreadCrumb/BreadCrumb';
 import ProductCard from '../../../../components/ProductCard/ProductCard';
-import qs from "qs"; // qs là cái gì đấy query string vl thư hiện query-string thì phải import la import qs from "query-string"
+import qs from "qs";
 
 const ProductList: React.FC = (props) => {
 
@@ -20,19 +20,23 @@ const ProductList: React.FC = (props) => {
 
     const [totalItems, setTotalItems] = useState(0);
 
+    useEffect(() => {
+        document.title = "Sản phẩm"
+    }, []);
+
 
     const [filter, setFilter]: any = useState({
         pageNo: 1,
-        pageSize: 3,
+        pageSize: 6,
         sort: "_id",
         ...qs.parse(location.search.substring(1)),
     })
 
-    console.log("location search", qs.parse(location.search.substring(1)));
+    // console.log("location search", qs.parse(location.search.substring(1)));
 
-    console.log("filter", qs.stringify({
-        ...filter,
-    }))
+    // console.log("filter", qs.stringify({
+    //     ...filter,
+    // }))
 
     console.log("stringify", qs.stringify({
         ...filter,
@@ -134,7 +138,35 @@ const ProductList: React.FC = (props) => {
     }
 
     const selectPrice = (min?: any, max?: any) => {
-        if (!min) {
+        if (min && max) {
+            setFilter({
+                ...filter,
+                filter: {
+                    DonGia: {
+                        $gte: min,
+                        $lte: max,
+                    },
+                },
+                pageNo: 1,
+            });
+            history.push({
+                pathname: '/product',
+                search: qs.stringify({
+                    ...filter,
+                    ...qs.parse(location.search.substring(1)),
+                    filter: {
+                        DonGia: {
+                            $gte: min,
+                            $lte: max,
+                        },
+                    },
+                    pageNo: 1,
+                }),
+            });
+            return;
+        }
+
+        if (!min && max) {
             setFilter({
                 ...filter,
                 filter: {
@@ -143,6 +175,7 @@ const ProductList: React.FC = (props) => {
                         $lte: max,
                     },
                 },
+                pageNo: 1,
             });
             history.push({
                 pathname: '/product',
@@ -155,11 +188,13 @@ const ProductList: React.FC = (props) => {
                             $lte: max,
                         },
                     },
+                    pageNo: 1,
                 }),
             });
+            return;
         }
 
-        else if (!max) {
+        else if (!max && min) {
             setFilter({
                 ...filter,
                 filter: {
@@ -167,6 +202,7 @@ const ProductList: React.FC = (props) => {
                         $gte: min,
                     },
                 },
+                pageNo: 1,
             });
             history.push({
                 pathname: '/product',
@@ -178,35 +214,36 @@ const ProductList: React.FC = (props) => {
                             $gte: min,
                         },
                     },
+                    pageNo: 1,
                 }),
             });
+            return;
         }
 
         else {
+            let tempFilter = filter;
+            delete tempFilter.filter;
+
+            let tempLocation = qs.parse(location.search.substring(1));
+            delete tempLocation.filter;
+
             setFilter({
-                ...filter,
-                filter: {
-                    DonGia: {
-                        $gte: min,
-                        $lte: max,
-                    },
-                },
+                ...tempFilter,
+                pageNo: 1,
             });
             history.push({
                 pathname: '/product',
                 search: qs.stringify({
-                    ...filter,
-                    ...qs.parse(location.search.substring(1)),
-                    filter: {
-                        DonGia: {
-                            $gte: min,
-                            $lte: max,
-                        },
-                    },
+                    ...tempFilter,
+                    ...tempLocation,
+                    pageNo: 1,
                 }),
             });
         }
+        return;
     }
+
+    console.log(filter.pageNo, "OMGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG")
 
     return (
         <div>
@@ -217,7 +254,7 @@ const ProductList: React.FC = (props) => {
                     <div className="list-content-wrapper">
                         <div id="left-column" className="sidebar">
                             <div className="block-categories">
-                                <h2 className="title-block">Categories</h2>
+                                <h2 className="title-block">Danh mục</h2>
                                 <div className="block_content">
                                     <ul className="category-top-menu">
                                         {catesProduct?.map((cate: any) => {
@@ -235,7 +272,7 @@ const ProductList: React.FC = (props) => {
                             </div>
 
                             <div className="block-categories">
-                                <h2 className="title-block">price</h2>
+                                <h2 className="title-block">Giá</h2>
                                 <div className="block_content">
                                     <div className="price-menu">
                                         <RadioGroup
@@ -243,29 +280,47 @@ const ProductList: React.FC = (props) => {
                                             name="radio-buttons-group"
                                         >
                                             <FormControlLabel
+                                                value="default"
+                                                control={<Radio color="default" />}
+                                                label="Mặc định"
+                                                onClick={() => {
+                                                    selectPrice(null, null);
+                                                }}
+                                            />
+
+                                            <FormControlLabel
                                                 value="cheap"
                                                 control={<Radio color="default" />}
-                                                label="$0 - $10"
+                                                label="<= 100 nghìn"
                                                 onClick={() => {
-                                                    selectPrice(null, 10);
+                                                    selectPrice(null, 100000);
                                                 }}
                                             />
 
                                             <FormControlLabel
                                                 value="medium"
                                                 control={<Radio color="default" />}
-                                                label="$10 - $20"
+                                                label="100 - 500 nghìn"
                                                 onClick={() => {
-                                                    selectPrice(10, 20);
+                                                    selectPrice(100000, 500000);
+                                                }}
+                                            />
+
+                                            <FormControlLabel
+                                                value="high"
+                                                control={<Radio color="default" />}
+                                                label="500 nghìn - 1 triệu "
+                                                onClick={() => {
+                                                    selectPrice(500000, 1000000);
                                                 }}
                                             />
 
                                             <FormControlLabel
                                                 value="expensive"
                                                 control={<Radio color="default" />}
-                                                label=">= $20"
+                                                label=">= 1 triệu"
                                                 onClick={() => {
-                                                    selectPrice(20, null);
+                                                    selectPrice(1000000, null);
                                                 }}
                                             />
                                         </RadioGroup>
@@ -276,7 +331,7 @@ const ProductList: React.FC = (props) => {
 
                         <div id="content-wrapper">
                             <div id="list-product-sort">
-                                <span className='sort-by'>Sort by: </span>
+                                <span className='sort-by'>Lọc theo: </span>
                                 <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
                                     <Select
                                         labelId="demo-simple-select-standard-label"
@@ -284,11 +339,11 @@ const ProductList: React.FC = (props) => {
                                         label="Age"
                                         defaultValue={0}
                                     >
-                                        <MenuItem value={0} onClick={() => { selectSort("_id") }}>Default</MenuItem>
-                                        <MenuItem value={1} onClick={() => { selectSort("TenSanPham") }}>Name, A to Z</MenuItem>
-                                        <MenuItem value={2} onClick={() => { selectSort("-TenSanPham") }}>Name, Z to A</MenuItem>
-                                        <MenuItem value={3} onClick={() => { selectSort("DonGia") }}>Price, Low to High</MenuItem>
-                                        <MenuItem value={4} onClick={() => { selectSort("-DonGia") }}>Price, High to Low</MenuItem>
+                                        <MenuItem value={0} onClick={() => { selectSort("_id") }}>Mặc định</MenuItem>
+                                        <MenuItem value={1} onClick={() => { selectSort("TenSanPham") }}>Tên, A - Z</MenuItem>
+                                        <MenuItem value={2} onClick={() => { selectSort("-TenSanPham") }}>Tên, Z - A</MenuItem>
+                                        <MenuItem value={3} onClick={() => { selectSort("DonGia") }}>Giá, thấp - cao</MenuItem>
+                                        <MenuItem value={4} onClick={() => { selectSort("-DonGia") }}>Giá, cao - thấp</MenuItem>
                                     </Select>
                                 </FormControl>
                             </div>
@@ -304,8 +359,8 @@ const ProductList: React.FC = (props) => {
                                 })}
                             </div>
                             <div className="pagination">
-                                <div>Showing {totalItems} items</div>
-                                <Pagination count={totalPages} onChange={handlePageChange} />
+                                <div>Đang hiện {totalItems} sản phẩm</div>
+                                <Pagination page={Number.parseInt(filter.pageNo)} count={totalPages} onChange={handlePageChange} />
                             </div>
                         </div>
                     </div>
