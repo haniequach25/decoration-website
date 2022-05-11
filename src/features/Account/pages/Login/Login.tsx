@@ -19,7 +19,7 @@ const Login: React.FC = (props) => {
                 saveToken(resolve);
                 Store.addNotification({
                     title: "Success!",
-                    message: "Login successfully",
+                    message: "Đăng nhập thành công !",
                     type: "success",
                     insert: "top",
                     container: "top-center",

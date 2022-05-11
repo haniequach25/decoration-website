@@ -47,7 +47,7 @@ const Contact: React.FC = () => {
                 history.push("/")
                 Store.addNotification({
                     title: "Success!",
-                    message: "Sent contact successfully",
+                    message: "Gửi liên hệ thành công !",
                     type: "success",
                     insert: "top",
                     container: "top-center",

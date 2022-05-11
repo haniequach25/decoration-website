@@ -13,7 +13,7 @@ const ForgetPassword: React.FC = (props) => {
             .then((resolve) => {
                 Store.addNotification({
                     title: "Success!",
-                    message: "Sent request successfully. Please check your email for the reset password link !",
+                    message: "Gửi yêu cầu thành công ! Kiểm tra email của bạn và kích vào link để reset mật khẩu",
                     type: "success",
                     insert: "top",
                     container: "top-center",

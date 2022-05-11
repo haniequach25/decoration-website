@@ -20,6 +20,7 @@ import 'react-notifications-component/dist/theme.css';
 import Contact from './features/Contact/Contact';
 import { Widget, addResponseMessage } from 'react-chat-widget';
 import 'react-chat-widget/lib/styles.css';
+import { MessengerChat } from "react-messenger-chat-plugin";
 
 const App: React.FC = () => {
 
@@ -88,12 +89,40 @@ const App: React.FC = () => {
         </Switch>
         <Footer />
       </BrowserRouter>
-      <Widget
+      {/* <Widget
         handleNewUserMessage={handleNewUserMessage}
         profileAvatar={logo}
         title="My new awesome title"
         subtitle="And my cool subtitle"
-      />
+      /> */}
+      {/* <MessengerChat
+        pageId="103333585711314"
+        language="en_US"
+        themeColor={"#000000"}
+        bottomSpacing={300}
+        loggedInGreeting="loggedInGreeting"
+        loggedOutGreeting="loggedOutGreeting"
+        greetingDialogDisplay={"show"}
+        debugMode={true}
+        onMessengerShow={() => {
+          console.log("onMessengerShow");
+        }}
+        onMessengerHide={() => {
+          console.log("onMessengerHide");
+        }}
+        onMessengerDialogShow={() => {
+          console.log("onMessengerDialogShow");
+        }}
+        onMessengerDialogHide={() => {
+          console.log("onMessengerDialogHide");
+        }}
+        onMessengerMounted={() => {
+          console.log("onMessengerMounted");
+        }}
+        onMessengerLoad={() => {
+          console.log("onMessengerLoad");
+        }}
+      /> */}
     </div>
   );
 }

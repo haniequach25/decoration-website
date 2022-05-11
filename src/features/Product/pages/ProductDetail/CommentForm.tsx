@@ -3,6 +3,9 @@ import * as yup from "yup";
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Rating } from '@mui/material';
+import { useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+import { Store } from 'react-notifications-component';
 
 interface Props {
     onSubmit?: any,
@@ -16,15 +19,17 @@ const schema = yup
             .string()
             .email("Invalid email format")
             .required("This field is required"),
-        content: yup.string().required("This field is required").min(3),
+        content: yup.string(),
     })
     .required();
 
 const CommentForm: React.FC<Props> = (props) => {
 
+    const history = useHistory();
+
     const [rating, setRating] = useState(5);
 
-    console.log(rating);
+    const token = useSelector((state: any) => state.user.token);
 
     const {
         register,
@@ -37,7 +42,7 @@ const CommentForm: React.FC<Props> = (props) => {
 
     const onSubmit = async (data: any) => {
         console.log(data);
-        if (props.onSubmit) {
+        if (props.onSubmit && token) {
             const response = await props.onSubmit({
                 ...data,
                 rating: rating,
@@ -45,6 +50,23 @@ const CommentForm: React.FC<Props> = (props) => {
             console.log(response);
             reset({
                 content: "",
+            });
+            return;
+        }
+        else {
+            history.push("/account/login");
+            Store.addNotification({
+                title: "Failed!",
+                message: "Vui lòng đăng nhập trước khi đánh giá sản phẩm !",
+                type: 'danger',
+                insert: "top",
+                container: "top-center",
+                animationIn: ["animate__animated animate__fadeIn"],
+                animationOut: ["animate__animated animate__fadeOut"],
+                dismiss: {
+                    duration: 5000,
+                    onScreen: false
+                }
             })
         }
     };
@@ -66,8 +88,9 @@ const CommentForm: React.FC<Props> = (props) => {
                         placeholder="Your name"
                         id="inputFullName"
                         className="form-control"
-                        defaultValue={props.customer?.TenKhachHang}
+                        defaultValue={props.customer?.TenKhachHang || "Your name"}
                         {...register("commenter")}
+                        readOnly
                     />
                     <p className="error-field">
                         {errors.commenter ? errors.commenter.message : ""}
@@ -85,8 +108,9 @@ const CommentForm: React.FC<Props> = (props) => {
                         placeholder="Email"
                         id="inputEmail"
                         className="form-control"
-                        defaultValue={props.customer?.email}
+                        defaultValue={props.customer?.email || "abc@gmail.com"}
                         {...register("email")}
+                        readOnly
                     />
                     <p className="error-field">
                         {errors.email ? errors.email.message : ""}

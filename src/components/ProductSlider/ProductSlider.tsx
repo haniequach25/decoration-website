@@ -24,7 +24,20 @@ const ProductSlider: React.FC<Properties> = (props) => {
                 </div>
 
                 <Swiper
-                    slidesPerView={4}
+                    breakpoints={{
+                        0: {
+                            slidesPerView: 1,
+                        },
+                        450: {
+                            slidesPerView: 2,
+                        },
+                        768: {
+                            slidesPerView: 3,
+                        },
+                        1080: {
+                            slidesPerView: 4,
+                        },
+                    }}
                     spaceBetween={30}
                     freeMode={true}
                     loop={props.productList.length > 4 ? true : false}

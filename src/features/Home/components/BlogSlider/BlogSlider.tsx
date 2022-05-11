@@ -56,7 +56,17 @@ const BlogSlider: React.FC = () => {
                 </div>
 
                 <Swiper
-                    slidesPerView={3}
+                    breakpoints={{
+                        0: {
+                            slidesPerView: 1,
+                        },
+                        450: {
+                            slidesPerView: 2,
+                        },
+                        768: {
+                            slidesPerView: 3,
+                        },
+                    }}
                     spaceBetween={30}
                     freeMode={true}
                     loop={true}

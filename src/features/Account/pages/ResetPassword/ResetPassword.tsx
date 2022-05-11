@@ -21,7 +21,7 @@ const ResetPassword: React.FC = (props) => {
                 history.push("/account/login");
                 Store.addNotification({
                     title: "Success!",
-                    message: "Your new password have been requested. Please login with your new password !",
+                    message: "Reset mật khẩu thành công !",
                     type: "success",
                     insert: "top",
                     container: "top-center",

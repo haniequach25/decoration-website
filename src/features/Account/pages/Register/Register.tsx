@@ -14,7 +14,7 @@ const Register: React.FC = () => {
                 history.push("/account/login");
                 Store.addNotification({
                     title: "Success!",
-                    message: "Sign up successfully",
+                    message: "Đăng ký thành công !",
                     type: "success",
                     insert: "top",
                     container: "top-center",

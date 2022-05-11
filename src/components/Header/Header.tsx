@@ -80,7 +80,7 @@ function Header() {
         if (e.key === 'Enter') {
             history.push({
                 pathname: '/product',
-                search: `?keywords=${wordEntered}&pageNo=1&pageSize=6`
+                search: `?TenSanPham=${wordEntered}&pageNo=1&pageSize=6`
             });
             setWordEntered("");
         }
@@ -89,7 +89,7 @@ function Header() {
     const handleSearch = () => {
         history.push({
             pathname: '/product',
-            search: `?keywords=${wordEntered}&pageNo=1&pageSize=6`
+            search: `?TenSanPham=${wordEntered}&pageNo=1&pageSize=6`
         });
         setWordEntered("");
     }

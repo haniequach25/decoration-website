@@ -1,5 +1,6 @@
 import moment from 'moment';
 import React, { useEffect } from 'react';
+import { Store } from 'react-notifications-component';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { updateUserAction } from '../../../../actions/user';
@@ -39,7 +40,35 @@ const Information: React.FC = () => {
                 const action = updateUserAction(token);
                 dispatch(action);
                 saveToken(token);
+                Store.addNotification({
+                    title: "Success!",
+                    message: "Cập nhật thành công !",
+                    type: "success",
+                    insert: "top",
+                    container: "top-center",
+                    animationIn: ["animate__animated", "animate__fadeIn"],
+                    animationOut: ["animate__animated", "animate__fadeOut"],
+                    dismiss: {
+                        duration: 5000,
+                        onScreen: false
+                    }
+                })
             })
+            .catch((error) => {
+                Store.addNotification({
+                    title: "Failed!",
+                    message: error.message,
+                    type: 'danger',
+                    insert: "top",
+                    container: "top-center",
+                    animationIn: ["animate__animated animate__fadeIn"],
+                    animationOut: ["animate__animated animate__fadeOut"],
+                    dismiss: {
+                        duration: 5000,
+                        onScreen: false
+                    }
+                })
+            });
     }
 
     useEffect(() => {

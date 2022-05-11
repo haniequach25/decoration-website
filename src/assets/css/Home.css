@@ -280,9 +280,10 @@ span svg.play-button-icon {
     margin-left: -5px;
 }
 
-@media (min-width: 450px) {
+@media (max-width: 765px) {
     .slide-content-center .caption-contain{
         font-size:14px;
+        letter-spacing: 1px;
     }
 }
 

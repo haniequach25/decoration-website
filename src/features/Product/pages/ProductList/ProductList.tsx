@@ -243,8 +243,6 @@ const ProductList: React.FC = (props) => {
         return;
     }
 
-    console.log(filter.pageNo, "OMGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG")
-
     return (
         <div>
             <BreadCrumb currentPage='product' />

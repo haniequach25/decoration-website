@@ -105,7 +105,7 @@ div.ReactCollapse--collapse {
     text-align: center;
 }
 
-@media (min-width: 450px) {
+@media (max-width: 765px) {
     .account-content {
         display: grid;
         width: 100%;

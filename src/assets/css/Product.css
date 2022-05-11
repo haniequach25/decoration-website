@@ -128,7 +128,7 @@ input[type=number] {
     font-size: 12px;
 }
 
-.product-image:hover .img-fluid-2nd {
+.thumbnail-container:hover .img-fluid-2nd {
     visibility: visible;
     opacity: 1;
 }
@@ -141,6 +141,71 @@ input[type=number] {
     right: 0;
     opacity: 0;
     transition: visibility 0.5s, opacity 0.5s linear;
+}
+
+@media (min-width: 992px) {
+    .thumbnail-container .quick-interaction {
+        opacity: 0;
+        visibility: hidden;
+    }
+
+    .thumbnail-container:hover .quick-interaction {
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
+.thumbnail-container .quick-interaction {
+    position: absolute;
+    bottom: 15px;
+    left: 15px;
+    right: 15px;
+    text-align: center;
+    font-size: 0;
+    transition: all .4s;
+    pointer-events: none;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.thumbnail-container .quick-interaction button {
+    pointer-events: auto;
+    width: 40px;
+    height: 40px;
+    box-shadow: 1px 1px 1px rgb(0 0 0 / 10%);
+    border: 0;
+    line-height: 40px;
+    text-align: center;
+    padding: 0;
+    background: rgba(255,255,255,.95);
+    border-radius: 50%;
+    margin: 0 10px 0 0;
+    display: block;
+    color: #000;
+    transition: all .4s;
+    position: relative;
+}
+
+.thumbnail-container .quick-interaction button:hover {
+    background: #999;
+    color: #fff;
+    transform: translateY(-3px);
+}
+
+@media (max-width: 765px) {
+    .css-nvuevi.modal-quickview {
+        width: 80%;
+        height: 80%;
+        overflow-y: scroll;
+    }
+}
+
+@media (max-width: 450px) {
+    .col-50-percents {
+        width: 100%;
+        float: left;
+    }
 }
 
 @media (min-width: 450px) {
