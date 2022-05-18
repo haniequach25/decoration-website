@@ -17,6 +17,7 @@ ul, ol {
 
 .header-bottom {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     height: 80px;
     align-items: center;
@@ -31,6 +32,7 @@ ul, ol {
 .header-navbar {
     text-align: left;
     display: flex;
+    flex-wrap: wrap;
 }
 
 .header-navbar::after {

@@ -198,7 +198,7 @@ input[type=number] {
     .css-nvuevi.modal-quickview {
         width: 80%;
         height: 80%;
-        overflow-y: scroll;
+        overflow-y: auto;
     }
 }
 
@@ -206,6 +206,16 @@ input[type=number] {
     .col-50-percents {
         width: 100%;
         float: left;
+    }
+
+    .list-product-container {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        justify-content: space-between;
+    }
+
+    #left-column.sidebar {
+        width: 100%;
     }
 }
 
