@@ -34,3 +34,16 @@
     border-bottom: 2px solid #f9d4bd;
     display: inline-block;
 }
+
+.nqt_social a{
+    margin-right: 10px;
+}
+
+.nqt_social .instagram svg {
+    width: 20px;
+    height: 20px;
+}
+
+.logo-container.footer-logo {
+    padding-top: 0;
+}

@@ -5,6 +5,7 @@ import { getAllCatProduct, getAllProduct } from '../../../../api/productApi';
 import BreadCrumb from '../../../../components/BreadCrumb/BreadCrumb';
 import ProductCard from '../../../../components/ProductCard/ProductCard';
 import qs from "qs";
+import PropagateLoader from "react-spinners/PropagateLoader";
 
 const ProductList: React.FC = (props) => {
 
@@ -19,6 +20,8 @@ const ProductList: React.FC = (props) => {
     const [totalPages, setTotalPages] = useState(0);
 
     const [totalItems, setTotalItems] = useState(0);
+
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         document.title = "Sản phẩm"
@@ -104,6 +107,7 @@ const ProductList: React.FC = (props) => {
             } catch (error) { }
         };
         fetchNewsList();
+        setLoading(false);
     }, [filter, location.search.substring(1)]);
 
     const handlePageChange = (event: any, value: any) => {
@@ -245,6 +249,24 @@ const ProductList: React.FC = (props) => {
 
     return (
         <div>
+            {loading && <div
+                style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "center",
+                    alignContent: "center",
+                    textAlign: "center",
+                    backgroundColor: "#FFF",
+                    position: "fixed",
+                    top: 0,
+                    left: 0,
+                    right: 0,
+                    bottom: 0,
+                    zIndex: 999
+                }}
+            >
+                <PropagateLoader color={"#9ca19e"} size={15} />
+            </div>}
             <BreadCrumb currentPage='product' />
 
             <div className="list-content">
@@ -347,14 +369,19 @@ const ProductList: React.FC = (props) => {
                             </div>
 
                             <div className="list-product-container">
-                                {productList?.map((item: any) => {
+                                {productList.length > 0 ? productList.map((item: any) => {
+                                    console.log(item)
                                     return (
                                         <ProductCard
                                             key={item?._id}
                                             item={item}
                                         />
                                     );
-                                })}
+                                })
+                                    :
+                                    (<div className='none-product-grid-item'>
+                                        <h3 style={{ margin: "20px 0 15px" }}>Không có sản phẩm nào phù hợp</h3>
+                                    </div>)}
                             </div>
                             <div className="pagination">
                                 <div>Đang hiện {totalItems} sản phẩm</div>

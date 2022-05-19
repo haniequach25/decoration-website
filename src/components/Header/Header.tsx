@@ -78,6 +78,7 @@ function Header() {
 
     const handleEnter = (e: any) => {
         if (e.key === 'Enter') {
+            handleClose();
             history.push({
                 pathname: '/product',
                 search: `?TenSanPham=${wordEntered}&pageNo=1&pageSize=6`
@@ -87,6 +88,7 @@ function Header() {
     }
 
     const handleSearch = () => {
+        handleClose();
         history.push({
             pathname: '/product',
             search: `?TenSanPham=${wordEntered}&pageNo=1&pageSize=6`
@@ -160,6 +162,7 @@ function Header() {
                                         placeholder="Search"
                                         onChange={handleFilter}
                                         onKeyDown={handleEnter}
+                                        autoFocus
                                     />
                                 </div>
                                 <button

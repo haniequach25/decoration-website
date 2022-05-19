@@ -19,7 +19,7 @@ const BreadCrumb: React.FC<Props> = (props) => {
                         {props.prevPage ? (<Link to={`/${props.prevPage}`}>
                             {props.prevPage}
                         </Link>) : ""}
-                        <Typography color="text.primary">{props.currentPage}</Typography>
+                        <Typography color="text.primary" className='current-page-breadcrumb'>{props.currentPage}</Typography>
                     </Breadcrumbs>
                 </div>
             </div>

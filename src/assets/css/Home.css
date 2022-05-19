@@ -118,15 +118,12 @@ h4.title-block {
 .thumbnail-container {
     position: relative;
     margin-bottom: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 100%;
+    
 }
 
 .thumbnail-container .product-image {
     position: relative;
-    height: 100%;
+    
 }
 
 .swiper-wrapper .swiper-slide {
@@ -135,7 +132,7 @@ h4.title-block {
 
 .img-fluid, .carousel-inner>.carousel-item>img, .carousel-inner>.carousel-item>a>img {
     max-width: 100%;
-    height: 100%;
+    height: auto;
 }
 
 .thumbnail-container .product-meta {
@@ -287,6 +284,10 @@ span svg.play-button-icon {
     display: inline-block;
     vertical-align: 15px;
     margin-left: -5px;
+}
+
+.container .swiper-pagination-bullet-active {
+    background-color: rgb(235 112 37 / 30%);
 }
 
 @media (max-width: 765px) {

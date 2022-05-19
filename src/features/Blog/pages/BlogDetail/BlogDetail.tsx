@@ -2,7 +2,8 @@ import React, { useEffect, useReducer, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getBlogBySlug, postCommentBlog } from "../../../../api/blogApi";
 import DetailBlogForm from "./BlogDetailForm/BlogDetailForm";
-import { useSelector } from 'react-redux'
+import { useSelector } from 'react-redux';
+import PropagateLoader from "react-spinners/PropagateLoader";
 
 interface SlugParam {
   slug: string,
@@ -14,6 +15,8 @@ const BlogDetail: React.FC = () => {
   console.log(slug);
 
   const [commentList, setCommentList] = useState([]);
+
+  const [loading, setLoading] = useState(true);
 
   const [detailBlog, setDetailBlog]: any = useState({});
 
@@ -31,6 +34,7 @@ const BlogDetail: React.FC = () => {
       } catch (error) { }
     };
     fetchDetailBlog();
+    setLoading(false);
   }, []);
 
   useEffect(() => {
@@ -52,6 +56,24 @@ const BlogDetail: React.FC = () => {
   };
   return (
     <>
+      {loading && <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignContent: "center",
+          textAlign: "center",
+          backgroundColor: "#FFF",
+          position: "fixed",
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          zIndex: 999
+        }}
+      >
+        <PropagateLoader color={"#9ca19e"} size={15} />
+      </div>}
       <DetailBlogForm
         detailBlog={detailBlog}
         handleAddComment={handleAddComment}

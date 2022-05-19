@@ -3,7 +3,6 @@
     grid-template-columns: repeat(3, 1fr);
     justify-content: space-between;
     grid-gap: 25px;
-    min-height: 1020px;
 }
 
 .list-product-container::after {
@@ -38,6 +37,8 @@
     padding-top: 112%;
     background-size: cover;
     margin-bottom: 20px;
+    -webkit-transition: background-image 0.2s ease-in-out;
+    transition: background-image 0.2s ease-in-out;
 }
 
 .img-slide-item {
@@ -194,8 +195,16 @@ input[type=number] {
     transform: translateY(-3px);
 }
 
+.MuiBox-root.modal-quickview {
+    overflow-y: auto;
+}
+
+.none-product-grid-item {
+    grid-column: 1 / 4;
+}
+
 @media (max-width: 765px) {
-    .css-nvuevi.modal-quickview {
+    .MuiBox-root.modal-quickview {
         width: 80%;
         height: 80%;
         overflow-y: auto;
@@ -212,6 +221,7 @@ input[type=number] {
         display: grid;
         grid-template-columns: repeat(1, 1fr);
         justify-content: space-between;
+        min-height: unset;
     }
 
     #left-column.sidebar {
@@ -224,6 +234,7 @@ input[type=number] {
         display: grid;
         grid-template-columns: repeat(1, 1fr);
         justify-content: space-between;
+        min-height: unset;
     }
 
     .col-50-percents {
@@ -238,6 +249,7 @@ input[type=number] {
         grid-template-columns: repeat(2, 1fr);
         justify-content: space-between;
         grid-gap: 50px;
+        min-height: 666px;
     }
 
     .col-50-percents {
@@ -256,5 +268,6 @@ input[type=number] {
         grid-template-columns: repeat(3, 1fr);
         justify-content: space-between;
         grid-gap: 50px;
+        min-height: 666px;
     }
 }

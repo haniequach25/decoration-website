@@ -155,7 +155,7 @@ const Quickview: React.FC<Props> = (props) => {
     }, [productName]);
 
     return (
-        <div>
+        <div style={{ outline: "none" }}>
             <div className="product-detail-container">
                 <div className="container">
                     <div className="content-wrapper">

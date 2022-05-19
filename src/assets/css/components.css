@@ -97,6 +97,23 @@
     margin-left: 10px;
 }
 
+#root .css-16fwddd {
+    display: block;
+    position: fixed;
+    margin: auto auto;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.current-page-breadcrumb {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 200px;
+}
+
 @media (min-width: 450px) {
     #left-column.sidebar {
         float: left;

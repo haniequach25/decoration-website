@@ -14,6 +14,7 @@ import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
 import moment from 'moment';
 import numberWithCommas from '../../../../MoneyFormat';
 import { Store } from 'react-notifications-component';
+import PropagateLoader from "react-spinners/PropagateLoader";
 
 interface TabPanelProps {
     children?: React.ReactNode;
@@ -75,6 +76,8 @@ const ProductDetail: React.FC = (props) => {
 
     const [productName, setProductName] = useState('Sản phẩm');
 
+    const [loading, setLoading] = useState(true);
+
     useEffect(() => {
         const fetchProduct = async () => {
             try {
@@ -112,6 +115,7 @@ const ProductDetail: React.FC = (props) => {
             } catch (error) { }
         };
         fetchProduct();
+        setLoading(false);
     }, [params.slug]);
 
 
@@ -229,6 +233,7 @@ const ProductDetail: React.FC = (props) => {
                             onScreen: false
                         }
                     })
+                    history.push(`/product/${productDetail.slug}`);
                 })
                 .catch((err) => {
                     Store.addNotification({
@@ -255,7 +260,25 @@ const ProductDetail: React.FC = (props) => {
 
     return (
         <div>
-            <BreadCrumb prevPage='product' currentPage={`${"product name"}`} />
+            {loading && <div
+                style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "center",
+                    alignContent: "center",
+                    textAlign: "center",
+                    backgroundColor: "#FFF",
+                    position: "fixed",
+                    top: 0,
+                    left: 0,
+                    right: 0,
+                    bottom: 0,
+                    zIndex: 999
+                }}
+            >
+                <PropagateLoader color={"#9ca19e"} size={15} />
+            </div>}
+            <BreadCrumb prevPage='product' currentPage={`${productDetail.TenSanPham}`} />
 
             <div className="product-detail-container">
                 <div className="container">

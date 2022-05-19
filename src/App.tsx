@@ -1,6 +1,5 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import logo from './logo.svg';
 import './App.css';
 import './assets/css/style.css';
 import { BrowserRouter, Redirect, Route } from 'react-router-dom';
@@ -18,22 +17,11 @@ import { useSelector } from 'react-redux';
 import { ReactNotifications } from 'react-notifications-component';
 import 'react-notifications-component/dist/theme.css';
 import Contact from './features/Contact/Contact';
-import { Widget, addResponseMessage } from 'react-chat-widget';
 import 'react-chat-widget/lib/styles.css';
-import { MessengerChat } from "react-messenger-chat-plugin";
 
 const App: React.FC = () => {
 
   const token: any = useSelector((state: any) => state.user.token);
-
-  useEffect(() => {
-    addResponseMessage('Welcome to this **awesome** chat!');
-  }, []);
-
-  const handleNewUserMessage = (newMessage: any) => {
-    console.log(`New message incoming! ${newMessage}`);
-    // Now send the message throught the backend API
-  };
 
   return (
     <div>
@@ -45,25 +33,6 @@ const App: React.FC = () => {
         <Switch>
           <Route exact path='/'>
             <Home />
-          </Route>
-
-          <Route path='/test'>
-            <div className="App">
-              <header className="App-header">
-                <img src={logo} className="App-logo" alt="logo" />
-                <p>
-                  Edit <code>src/App.tsx</code> and save to reload.
-                </p>
-                <a
-                  className="App-link"
-                  href="https://reactjs.org"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Learn React
-                </a>
-              </header>
-            </div>
           </Route>
 
           <Route path="/product">
@@ -89,40 +58,6 @@ const App: React.FC = () => {
         </Switch>
         <Footer />
       </BrowserRouter>
-      {/* <Widget
-        handleNewUserMessage={handleNewUserMessage}
-        profileAvatar={logo}
-        title="My new awesome title"
-        subtitle="And my cool subtitle"
-      /> */}
-      {/* <MessengerChat
-        pageId="103333585711314"
-        language="en_US"
-        themeColor={"#000000"}
-        bottomSpacing={300}
-        loggedInGreeting="loggedInGreeting"
-        loggedOutGreeting="loggedOutGreeting"
-        greetingDialogDisplay={"show"}
-        debugMode={true}
-        onMessengerShow={() => {
-          console.log("onMessengerShow");
-        }}
-        onMessengerHide={() => {
-          console.log("onMessengerHide");
-        }}
-        onMessengerDialogShow={() => {
-          console.log("onMessengerDialogShow");
-        }}
-        onMessengerDialogHide={() => {
-          console.log("onMessengerDialogHide");
-        }}
-        onMessengerMounted={() => {
-          console.log("onMessengerMounted");
-        }}
-        onMessengerLoad={() => {
-          console.log("onMessengerLoad");
-        }}
-      /> */}
     </div>
   );
 }

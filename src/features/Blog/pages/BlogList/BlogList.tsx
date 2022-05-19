@@ -4,11 +4,13 @@ import { Link, useRouteMatch } from 'react-router-dom';
 import { getAllBlog } from '../../../../api/blogApi';
 import BreadCrumb from '../../../../components/BreadCrumb/BreadCrumb';
 import moment from 'moment';
-
+import PropagateLoader from "react-spinners/PropagateLoader";
 
 const BlogList: React.FC = () => {
 
     const match = useRouteMatch();
+
+    const [loading, setLoading] = useState(true);
 
     const [blogList, setBlogList] = useState([]);
 
@@ -50,6 +52,7 @@ const BlogList: React.FC = () => {
             } catch (error) { }
         };
         fetchBlogList();
+        setLoading(false);
     }, [filter]);
 
     const handlePageChange = (event: any, value: number) => {
@@ -60,8 +63,28 @@ const BlogList: React.FC = () => {
         });
     };
 
+
+
     return (
         <div>
+            {loading && <div
+                style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "center",
+                    alignContent: "center",
+                    textAlign: "center",
+                    backgroundColor: "#FFF",
+                    position: "fixed",
+                    top: 0,
+                    left: 0,
+                    right: 0,
+                    bottom: 0,
+                    zIndex: 999
+                }}
+            >
+                <PropagateLoader color={"#9ca19e"} size={15} />
+            </div>}
             <BreadCrumb currentPage='blog' />
 
             <div className="list-content">

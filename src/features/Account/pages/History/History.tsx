@@ -8,6 +8,7 @@ import { Pagination } from '@mui/material';
 import { getAllOrder } from '../../../../api/orderApi';
 import moment from 'moment';
 import { useSelector } from 'react-redux';
+import PropagateLoader from "react-spinners/PropagateLoader";
 
 interface Props {
     item: any,
@@ -96,6 +97,8 @@ const History: React.FC = (props) => {
         pageSize: 3,
     });
 
+    const [loading, setLoading] = useState(true);
+
     useEffect(() => {
         const fetchList = async () => {
             try {
@@ -121,6 +124,7 @@ const History: React.FC = (props) => {
             } catch (error) { }
         };
         fetchList();
+        setLoading(false);
     }, [filter]);
 
     const handlePageChange = (event: any, value: number) => {
@@ -133,6 +137,24 @@ const History: React.FC = (props) => {
 
     return (
         <div className='history-list account-container'>
+            {loading && <div
+                style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "center",
+                    alignContent: "center",
+                    textAlign: "center",
+                    backgroundColor: "#FFF",
+                    position: "fixed",
+                    top: 0,
+                    left: 0,
+                    right: 0,
+                    bottom: 0,
+                    zIndex: 999
+                }}
+            >
+                <PropagateLoader color={"#9ca19e"} size={15} />
+            </div>}
             <BreadCrumb prevPage='account' currentPage='history' />
             <div className="container">
                 <header className="page-header">

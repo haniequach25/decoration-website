@@ -4,6 +4,8 @@ import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import BlogSlider from './components/BlogSlider/BlogSlider';
 import ProductSlider from '../../components/ProductSlider/ProductSlider';
 import { getAllProduct } from '../../api/productApi';
+import BannerSlider from './components/BannerSlider/BannerSlider';
+import BannerPlay from './assets/h1-bn-4.jpg';
 
 const Home: React.FC = () => {
 
@@ -55,28 +57,7 @@ const Home: React.FC = () => {
 
     return (
         <div>
-            <div className="container">
-                <div
-                    className="slide-config"
-                    style={{ backgroundImage: `url(https://ld-wp73.template-help.com/woocommerce/prod_22039/v2/wp-content/uploads/2021/05/Rectangle.png)` }}
-                >
-                    <div className="slide-content">
-                        <div className="tp-caption  h1-style-2" data-x="240" data-y="360" data-transition="fade" >
-                            <div className="caption-contain" >
-                                Decór
-                            </div>
-                        </div>
-
-                        <div className="tp-caption  h1-style-3" data-x="240" data-y="475" data-transition="fade" >
-                            <span>Chỉ từ</span> 50 nghìn VNĐ
-                        </div>
-
-                        <div className="tp-caption  h1-style-4" data-x="240" data-y="545" data-transition="fade">
-                            <Link className="slide-btn btn btn-contained" to="/product" title="Shop Now">Xem ngay</Link>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <BannerSlider />
 
             <ProductSlider
                 title={"Sản phẩm mới"}
@@ -87,7 +68,7 @@ const Home: React.FC = () => {
             <div className="container">
                 <div
                     className="slide-config"
-                    style={{ backgroundImage: `url(https://ld-wp73.template-help.com/woocommerce/prod_22039/v2/wp-content/uploads/2021/05/Rectangle-5.png)` }}
+                    style={{ backgroundImage: `url(${BannerPlay})` }}
                 >
                     <div className="slide-content-center">
                         <a
