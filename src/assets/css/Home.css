@@ -126,6 +126,25 @@ h4.title-block {
     
 }
 
+.product-flags {
+    margin: 0;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 12px;
+    z-index: 1;
+    text-transform: uppercase;
+    line-height: 15px;
+    pointer-events: none;
+}
+
+.product-flags .product-flag {
+    margin: 2px 1px;
+    padding: 2px 5px;
+    border-radius: 10px;
+    font-weight: bolder;
+}
+
 .swiper-wrapper .swiper-slide {
     height: auto;
   }

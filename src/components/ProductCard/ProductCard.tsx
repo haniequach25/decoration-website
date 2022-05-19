@@ -109,6 +109,12 @@ const ProductCard: React.FC<Properties> = (props) => {
                         </button>
                     </div>
                 </div>
+
+                {props.item.SoLuong === 0 ? (<div className="product-flags">
+                    <span className="product-flag outstock-flag">
+                        Hết
+                    </span>
+                </div>) : ""}
             </div>
 
             <div className="product-meta">
