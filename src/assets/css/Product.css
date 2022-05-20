@@ -199,6 +199,10 @@ input[type=number] {
     overflow-y: auto;
 }
 
+.MuiBox-root.modal-quickview:focus, .MuiBox-root.modal-quickview:hover {
+    outline: none;
+}
+
 .none-product-grid-item {
     grid-column: 1 / 4;
 }
